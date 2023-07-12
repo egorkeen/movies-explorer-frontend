@@ -1,70 +1,31 @@
-# Getting Started with Create React App
+# Movie Explorer (frontend-часть) 🎓
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Описание ✍
 
-## Available Scripts
+Данный проект является frontend-частью нашего дипломного проекта. Его основная цель - предоставить интерфейс, который помогает пользователям искать фильмы, а также добавлять их в список сохраненных. 
 
-In the project directory, you can run:
+## Стек технологий ⚙️
 
-### `npm start`
+<img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white"/> <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white"/> <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=white"/> <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=white"/>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Установка и запуск 🛠️
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. Клонируйте репозиторий на свой локальный компьютер 💻
+2. Убедитесь, что у вас установлен Node.js и npm 🌐
+3. Установите зависимости, выполнив команду npm install 🛠️
+4. Запустите приложение, введя команду npm start 🏁
+5. Откройте ваш браузер и перейдите по адресу http://localhost:3000 🌎
 
-### `npm test`
+## Дальнейшие планы 📝
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Реализация функциональности 🦾
+2. Взаимодействие с сервером 🌐
+3. Деплой проекта 🚀
 
-### `npm run build`
+## Ссылки и дополнительная информация 🛈
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Ссылка на макет Figma - https://www.figma.com/file/fkMYbw99hizA4OurWHKIgh/Diploma-Praktikum?type=design&node-id=37456%3A34129&mode=dev
+2. Язык - русский
+3. Ссылка на репозиторий - https://github.com/egorkeen/movies-explorer-frontend/
+4. Статус проекта - в разработке ⏳
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

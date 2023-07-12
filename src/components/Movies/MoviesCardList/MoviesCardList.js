@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import MoviesCard from "../MoviesCard/MoviesCard";
-import FadeLoader from "react-spinners/FadeLoader";
+import Preloader from "../../Preloader/Preloader";
 import image1 from '../../../images/card__images/1.png';
 import image2 from '../../../images/card__images/2.png';
 import image3 from '../../../images/card__images/3.png';
@@ -21,7 +21,7 @@ function MoviesCardList (props) {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-    }, 1000)
+    }, 2300);
   }, []);
 
   function loadMoreCards () {
@@ -33,15 +33,7 @@ function MoviesCardList (props) {
         {/* в дальнейшем здесь будет описана логика рендеринга фильмов */}
         {
           isLoading ?
-          <div className="movies__preloader">
-            <FadeLoader
-              color='#424242'
-              loading={isLoading}
-              size={200}
-              aria-label="Loading Spinner"
-              data-testid="loader"
-            />
-          </div>
+          <Preloader />
           :
           <div className='movies__container'>
             <MoviesCard
