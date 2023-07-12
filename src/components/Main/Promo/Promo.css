@@ -1,0 +1,140 @@
+.promo {
+  min-width: 1140px;
+  background-color: #073042;
+  display: flex;
+  margin: 0 auto;
+  padding: 70px 70px 72px;
+  justify-content: space-between;
+}
+
+.promo__container {
+  min-width: 640px;
+}
+
+.promo__title {
+  max-width: 600px;
+  color: #FFF;
+  font-size: 50px;
+  font-weight: 400;
+  line-height: 58px;
+  margin: 0;
+  padding: 0;
+}
+
+.promo__description {
+  max-width: 310px;
+  color: #FFF;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: normal;
+  opacity: .5;
+  margin: 36px 0 146px;
+  padding: 0;
+}
+
+.promo__link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 129px;
+  height: 36px;
+  margin: 0;
+  padding: 0;
+  border-radius: 3px;
+  color: #FFF;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  /* box-shadow необходим для реализации границ у кнопки */
+  box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  transition: .1s linear;
+}
+
+.promo__link:hover {
+  opacity: .8;
+}
+
+.promo__image {
+  width: 310px;
+  height: 304px;
+}
+
+/* под планшеты */
+@media screen and (min-width: 768px) and (max-width: 1280px) {
+  .promo {
+    min-width: 680px;
+    padding: 137px 44px 76px;
+    flex-direction: column-reverse;
+    justify-content: unset;
+    align-items: center;
+  }
+
+  .promo__image {
+    margin: 0 0 43px;
+  }
+
+  .promo__container {
+    max-width: 680px;
+  }
+
+  .promo__title {
+    min-width: 680px;
+    min-height: 100px;
+    text-align: center;
+    font-size: 40px;
+    line-height: 50px;
+    letter-spacing: .2px;
+  }
+
+  .promo__description {
+    line-height: 17px;
+    max-width: 260px;
+    text-align: center;
+    margin: 20px auto 92px;
+  }
+
+  .promo__link {
+    padding-top: 3px;
+    margin: 0 auto;
+    width: 126px;
+    height: 31px;
+  }
+}
+ /* под смартфоны */
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .promo {
+    min-width: 300px;
+    padding: 70px 10px 30px;
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+
+  .promo__title {
+    margin: 40px auto 24px;
+    text-align: center;
+    max-width: 300px;
+    font-size: 28px;
+    line-height: 38px;
+  }
+  
+  .promo__description {
+    max-width: 260px;
+    margin: 0 auto 78px;
+    text-align: center;
+    font-size: 13px;
+  }
+
+  .promo__container {
+    min-width: 300px;
+  }
+
+  .promo__link {
+    margin: 0 auto;
+  }
+
+  .promo__image {
+    width: 210px;
+    height: 206px;
+  }
+}
