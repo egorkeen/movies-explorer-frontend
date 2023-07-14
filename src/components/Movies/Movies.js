@@ -14,12 +14,12 @@ function Movies (props) {
         onBurgerMenuClick={props.onBurgerMenuClick} 
         isLoggedIn={props.isLoggedIn} 
       />
-
-      <section className="movies">
-        <SearchForm />
-        <MoviesCardList />
-      </section>
-
+      <main className="main">
+        <section className="movies">
+          <SearchForm />
+          <MoviesCardList />
+        </section>
+      </main>
       <Footer />
     </div>
   );
