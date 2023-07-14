@@ -14,10 +14,10 @@ function SearchForm (props) {
 
   return (
     <section className="search-form">
-      <div className="search-form__search-container">
+      <form className="search-form__search-container">
         <input onChange={handleMovieChange} value={movie} placeholder="Фильм" className="search-form__input" />
-        <button onClick={handleSearchClick} className="search-form__search-button" />
-      </div>
+        <button type="submit" onClick={handleSearchClick} className="search-form__search-button" />
+      </form>
       <div className="search-form__toggle-container">
         <Switch />
         <span className="search-form__span">Короткометражка</span>

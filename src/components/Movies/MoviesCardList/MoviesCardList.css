@@ -1,7 +1,8 @@
 .movies__card-list {
   min-width: 1140px;
   min-height: 468px;
-  margin: 0;
+  max-width: 1280px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;

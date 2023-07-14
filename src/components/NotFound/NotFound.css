@@ -31,6 +31,7 @@
   margin: 184px 0 0;
   padding: 0;
   transition: .1s linear;
+  cursor: pointer;
 }
 
 .not-found__back-button:hover {

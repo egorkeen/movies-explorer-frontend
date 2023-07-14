@@ -6,6 +6,11 @@
   padding: 112px 70px;
 }
 
+.about-project__content {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
 .about-project__title {
   letter-spacing: -0.8px;
   display: flex;
@@ -20,7 +25,6 @@
 
 /* контейнер с колонками и его содержимое */
 .about-project__columns-container {
-  max-width: 1140px;
   margin: 70px 0 0;
   display: flex;
   justify-content: space-between;
@@ -124,7 +128,6 @@
   }
 
   .about-project__columns-container {
-    max-width: 668px;
     gap: 30px;
   }
 

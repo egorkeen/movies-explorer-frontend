@@ -26,7 +26,7 @@ function Navigation (props) {
     // это шапка для стартовой страницы
     return (
       <>
-        <nav className="header__container">
+        <nav className="navigation__auth-container">
           <NavLink to="/signup" className="header__register-button">Регистрация</NavLink>
           <NavLink to="/signin" className="header__login-button">Войти</NavLink>
         </nav>

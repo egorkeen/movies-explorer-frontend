@@ -1,8 +1,8 @@
 .footer {
   min-width: 1140px;
-  max-width: 100%;
+  max-width: 1280px;
   min-height: 172px;
-  margin: 0;
+  margin: 0 auto;
   padding: 0 70px 20px;
   background-color: #202020;
   display: flex;

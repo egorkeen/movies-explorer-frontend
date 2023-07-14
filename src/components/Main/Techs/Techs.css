@@ -6,6 +6,11 @@
   padding: 100px 70px 82px;
 }
 
+.techs__content {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
 .techs__title {
   display: flex;
   color: #FFF;

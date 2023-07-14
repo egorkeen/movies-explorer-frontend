@@ -8,11 +8,16 @@ function Header (props) {
     return (
       // определяем, какой цвет у шапки должен быть
       <header className={`header ${props.isHeaderDark ? 'header_theme_dark' : 'header_theme_blue'}`}>
-        <Link to="/"><img className="header__logo" src={logo} alt="Логотип" /></Link>
-        {/* компонент панели навигации */}
-        <Navigation
-          onBurgerMenuClick={props.onBurgerMenuClick}
-          isLoggedIn={props.isLoggedIn} />
+          <div className="header__content">
+            <Link to="/">
+              <img className="header__logo" src={logo} alt="Логотип" />
+            </Link>
+              {/* компонент панели навигации */}
+              <Navigation
+                onBurgerMenuClick={props.onBurgerMenuClick}
+                isLoggedIn={props.isLoggedIn} 
+            />
+          </div>
       </header>
     );
 };

@@ -1,7 +1,8 @@
 .saved-movies__card-list {
   min-height: 468px;
   min-width: 1140px;
-  margin: 0;
+  max-width: 1280px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
