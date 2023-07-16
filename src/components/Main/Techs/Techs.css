@@ -3,11 +3,11 @@
   max-width: 100%;
   background-color: #272727;
   margin: 0;
-  padding: 100px 70px 82px;
+  padding: 98px 70px 100px;
 }
 
 .techs__content {
-  max-width: 1280px;
+  max-width: 1140px;
   margin: 0 auto;
 }
 
@@ -31,7 +31,7 @@
 
 .techs__description-title {
   letter-spacing: -2px;
-  margin: 90px auto 24px;
+  margin: 90px auto 25px;
   padding: 0;
   color: #FFF;
   font-size: 50px;
@@ -40,8 +40,8 @@
 }
 
 .techs__description {
-  max-width: 480px;
-  margin: 0 auto 83px;
+  max-width: 460px;
+  margin: 0 auto 81px;
   padding: 0;
   text-align: center;
   color: #FFF;

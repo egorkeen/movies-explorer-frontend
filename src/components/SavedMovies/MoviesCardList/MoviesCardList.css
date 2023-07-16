@@ -50,12 +50,14 @@
     min-width: 708px;
     padding-left: 30px;
     padding-right: 30px;
+    padding-top: 80px;
   }
 
   .saved-movies__container {
     min-width: 708px;
     grid-template-columns: 1fr 1fr;
-    gap: 24px;
+    column-gap: 24px;
+    row-gap: 36px;
   }
 
   .saved-movies__load-button {
@@ -69,6 +71,7 @@
     padding-left: 10px;
     padding-right: 10px;
     padding-top: 50px;
+    padding-bottom: 119px;
   }
 
   .saved-movies__container {

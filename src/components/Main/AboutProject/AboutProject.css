@@ -3,11 +3,11 @@
   max-width: 100%;
   background-color: #202020;
   margin: 0;
-  padding: 112px 70px;
+  padding: 114px 70px 110px;
 }
 
 .about-project__content {
-  max-width: 1280px;
+  max-width: 1140px;
   margin: 0 auto;
 }
 

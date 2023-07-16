@@ -54,7 +54,7 @@
   background-color: #313131;
   background-image: url(../../../images/card__delete-button.svg);
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
   margin: 18px auto 0;
   padding: 0;
   transition: .1s linear;

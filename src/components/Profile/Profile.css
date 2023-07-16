@@ -101,12 +101,13 @@
 
 @media screen and (min-width: 320px) and (max-width: 767px) {
   .profile__title {
-    margin-top: 70px;
-    margin-bottom: 80px;
+    margin-top: 65px;
+    margin-bottom: 65px;
   }
 
   .profile__container {
     width: 260px;
+    padding: 17px 0;
   }
 
   .profile__input {
@@ -114,6 +115,6 @@
   }
 
   .profile__submit-button {
-    margin-top: calc(220px + 3vh);
+    margin-top: 30vh;
   }
 }

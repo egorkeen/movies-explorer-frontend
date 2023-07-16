@@ -1,8 +1,8 @@
 .about-me {
   min-width: 1140px;
-  max-width: 1280px;
+  max-width: 1140px;
   margin: 0 auto;
-  padding: 110px 70px 100px;
+  padding: 112px 70px 100px;
   background-color: #202020;
 }
 
@@ -50,7 +50,7 @@
 
 .about-me__description {
   max-width: 600px;
-  margin: 0 0 100px;
+  margin: 0 0 99px;
   padding: 0;
   color: #FFF;
   font-size: 14px;
@@ -129,6 +129,12 @@
     padding: 70px 14px;
   }
 
+  .about-me__limit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   .about-me__title {
     margin-top: 4px;
     font-size: 16px;
@@ -137,8 +143,10 @@
   }
 
   .about-me__content {
+    max-width: 292px;
     margin-top: 60px;
     flex-direction: column-reverse;
+    align-items: center;
   }
 
   .about-me__photo {

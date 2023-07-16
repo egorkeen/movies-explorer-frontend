@@ -2,12 +2,12 @@
   min-width: 1140px;
   max-width: 100%;
   margin: 0;
-  padding: 0 70px 125px;
+  padding: 0 70px 127px;
   background-color: #202020;
 }
 
 .portfolio__content {
-  max-width: 1280px;
+  max-width: 1140px;
   margin: 0 auto;
 }
 
@@ -60,15 +60,20 @@
 @media screen and (min-width: 768px) and (max-width: 1280px) {
   .portfolio {
     min-width: 668px;
-    padding: 0 50px 100px;
+    padding: 0 50px 91px;
   }
 
   .portfolio__title {
     letter-spacing: .2px;
   }
 
+  .portfolio__websites {
+    gap: 12px;
+  }
+
   .portfolio__website {
     min-width: 668px;
+    padding-bottom: 8px;
   }
 
   .portfolio__website-name {
@@ -90,10 +95,12 @@
 
   .portfolio__websites {
     margin-top: 30px;
+    gap: 12px;
   }
 
   .portfolio__website {
     min-height: 47px;
+    padding-bottom: 8px;
   }
 
   .portfolio__website-name {

@@ -44,8 +44,8 @@
 }
 
 .navigation__profile-button {
-  min-width: 100px;
-  min-height: 32px;
+  min-width: 96px;
+  min-height: 28px;
   margin: 0 0 0 30px;
   padding: 0;
   display: flex;
@@ -91,7 +91,7 @@
   opacity: .8;
 }
 
-@media screen and (min-width: 320px) and (max-width: 767px) {
+@media screen and (min-width: 320px) and (max-width: 768px) {
   .navigation__container {
     display: none;
   }
@@ -102,6 +102,6 @@
 
   .navigation__burger-menu {
     display: block;
-    background-size: 47px 37px;
+    background-size: 42px 37px;
   }
 }
