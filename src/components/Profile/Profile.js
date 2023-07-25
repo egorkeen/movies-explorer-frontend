@@ -14,12 +14,12 @@ function Profile (props) {
     setEmail(e.target.value);
   }
 
-  const handleSubmitChanges = () => {
-    // тут мы описываем дейсвтия после нажатия кнопки редактирования
-  }
-
-  const handleSignOutClick = () => {
-    // описываем действия при нажатии "Выйти из Аккаунта"
+  const handleSubmitChanges = (e) => {
+    e.preventDefault();
+    props.onSubmit({
+      name: name,
+      email: email
+    });
   }
 
   return (
@@ -27,7 +27,7 @@ function Profile (props) {
       <Header
         isHeaderDark={isHeaderDark}
         onBurgerMenuClick={props.onBurgerMenuClick} 
-        isLoggedIn={props.isLoggedIn}
+        loggedIn={props.loggedIn}
       />
       <section className="profile">
         <h1 className="profile__title">Привет, {props.currentUser.name}</h1>
@@ -42,7 +42,7 @@ function Profile (props) {
           </div>
         </div>
         <button onClick={handleSubmitChanges} type="submit" className="profile__submit-button">Редактировать</button>
-        <button className="profile__sign-out-button" onClick={handleSignOutClick}>Выйти из аккаунта</button>
+        <button className="profile__sign-out-button" onClick={props.onSignOut}>Выйти из аккаунта</button>
       </section>
     </div>
   );

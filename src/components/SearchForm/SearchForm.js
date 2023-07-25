@@ -8,18 +8,34 @@ function SearchForm (props) {
     setMovie(e.target.value);
   }
 
-  const handleSearchClick = (e) => {
-    // описываем функционал при нажатии поиска
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    props.onSubmit(movie);
   }
 
   return (
     <section className="search-form">
-      <form className="search-form__search-container">
-        <input onChange={handleMovieChange} value={movie} placeholder="Фильм" className="search-form__input" />
-        <button type="submit" onClick={handleSearchClick} className="search-form__search-button" />
+      <form onSubmit={handleSearchSubmit} className="search-form__search-container">
+        <input
+          type="text"
+          placeholder="Фильм" 
+          className="search-form__input"
+          minLength={2}
+          maxLength={40}
+          required={true}
+          onChange={handleMovieChange} 
+          value={movie} 
+        />
+        <button 
+          type="submit" 
+          className="search-form__search-button" 
+        />
       </form>
       <div className="search-form__toggle-container">
-        <Switch />
+        <Switch
+          toggleShorts={props.toggleShorts}
+          onToggleClick={props.onToggleClick}
+        />
         <span className="search-form__span">Короткометражка</span>
       </div>
     </section>

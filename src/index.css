@@ -16,6 +16,8 @@
 @import url(./components/NotFound/NotFound.css);
 @import url(./components/SearchForm/SearchForm.css);
 
+@import url(./components/InfoTooltip/InfoTooltip.css);
+
 body {
   margin: 0;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

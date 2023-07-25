@@ -1,11 +1,11 @@
 .movies__card-list {
   min-width: 1140px;
-  min-height: 468px;
   max-width: 1280px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   padding: 80px 70px 90px;
   background-color: #202020;
 }
@@ -42,6 +42,16 @@
 
 .movies__load-button:hover {
   opacity: .8;
+}
+
+.movies__no-movies-title {
+  letter-spacing: -2px;
+  padding: 50px 0 0;
+  margin: 0;
+  color: #8B8B8B;
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 35px;
 }
 
 @media screen and (min-width: 768px) and (max-width: 1280px) {

@@ -15,7 +15,7 @@ function Header (props) {
               {/* компонент панели навигации */}
               <Navigation
                 onBurgerMenuClick={props.onBurgerMenuClick}
-                isLoggedIn={props.isLoggedIn} 
+                loggedIn={props.loggedIn} 
             />
           </div>
       </header>

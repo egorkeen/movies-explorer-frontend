@@ -1,0 +1,92 @@
+.popup {
+  background-color: rgba(0, 0, 0, .9);
+  display: flex;
+  visibility: hidden;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  z-index: 90;
+  opacity: 0;
+  transition: .2s linear;
+}
+
+.popup_active {
+  visibility: visible;
+  opacity: 1;
+}
+
+.modal-popup__title {
+  display: block;
+  font-family: 'Inter';
+  max-width: 358px;
+  text-align: center;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29px;
+  margin: 0;
+  padding: 0;
+}
+
+.modal-popup__image {
+  width: 120px;
+  height: 120px;
+}
+
+.modal-popup__container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  margin: 0;
+  padding: 0;
+  width: 430px;
+  height: 330px;
+  background-color: white;
+  border-radius: 10px;
+  z-index: 150;
+}
+
+.modal-popup__close-button {
+  width: 32px;
+  height: 32px;
+  background-image: url(../../images/close-button.svg);
+  background-size: 32px;
+  background-size: contain;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  transition: .1s linear;
+}
+
+.modal-popup__close-button:hover {
+  opacity: .6;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .modal-popup__title {
+    font-size: 20px;
+  }
+
+  .modal-popup__container {
+    width: 280px;
+    height: 308px;
+  }
+
+  .modal-popup__close-button {
+    top: -35px;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    background-size: 20px;
+  }
+}

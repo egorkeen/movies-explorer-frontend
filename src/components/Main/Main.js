@@ -14,7 +14,7 @@ function Main (props) {
       <Header
         isHeaderDark={isHeaderDark}
         onBurgerMenuClick={props.onBurgerMenuClick} 
-        isLoggedIn={props.isLoggedIn}
+        loggedIn={props.loggedIn}
       />
       <main className="main">
         <Promo />

@@ -60,14 +60,6 @@
   opacity: .8;
 }
 
-.form__error-span {
-  color: #EE3465;
-  font-size: 10px;
-  font-weight: 400;
-  margin: 0;
-  padding: 0;
-}
-
 @media screen and (min-width: 320px) and (max-width: 767px) {
   .form {
     width: 260px;

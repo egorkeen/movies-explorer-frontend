@@ -6,7 +6,7 @@ import  profile__image from '../../images/header__profile-image.svg';
 function Navigation (props) {
 
 // меню навигации для авторизованных пользователей
-  if (props.isLoggedIn) {
+  if (props.loggedIn) {
       return (
       <>
         <nav className="navigation__container">
