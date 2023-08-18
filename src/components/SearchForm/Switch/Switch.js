@@ -1,11 +1,10 @@
-import React, { useState } from "react";
 import './Switch.css';
 
-function Switch (props) {
+function Switch ({ onToggleClick, shortsActive }) {
   return (
     <label className="switch">
       <input type="checkbox" className="switch__input" />
-      <span className="switch__slider" onClick={props.onToggleClick} />
+      <span className={`switch__slider ${shortsActive ? 'switch__slider_active' : ''}`} onClick={onToggleClick} />
     </label>
   );
 };

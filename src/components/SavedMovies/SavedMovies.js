@@ -1,55 +1,39 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "./MoviesCardList/MoviesCardList";
-import mainApi from "../../utils/MainApi";
 
-function Movies (props) {
-  const [isLoading, setLoading] = useState(false);
+function SavedMovies ({ 
+  onBurgerMenuClick, 
+  loggedIn, 
+  savedMovies, 
+  onDeleteClick,
+  isLoading,
+  onSubmit,
+  onToggleClick,
+  shortsActive 
+  }) {
   const [isHeaderDark, setHeaderDark] = useState(true);
-  const [cards, setCards] = useState([]);
-
-  useEffect(() => {
-    setLoading(true);
-    mainApi
-      .getMovies()
-      .then((movies) => {
-        setLoading(false);
-        setCards(movies);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-  }, []);
-
-  function handleCardDelete(card) {
-    console.log(card)
-    mainApi
-      .deleteMovie(card._id)
-      .then((res) => {
-        const updatedCards = cards.slice().filter(c => c !== card);
-        setCards(updatedCards);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
 
   return (
     <div className="page">
       <Header
         isHeaderDark={isHeaderDark}
-        onBurgerMenuClick={props.onBurgerMenuClick} 
-        loggedIn={props.loggedIn} 
+        onBurgerMenuClick={onBurgerMenuClick} 
+        loggedIn={loggedIn} 
       />
       <main className="main">
         <section className="saved-movies">
-          <SearchForm />
+          <SearchForm
+            shortsActive={shortsActive}
+            onToggleClick={onToggleClick}
+            onSubmit={onSubmit}
+          />
           <MoviesCardList
             isLoading={isLoading}
-            cards={cards}
-            onCardDelete={handleCardDelete}
+            movies={savedMovies}
+            onDeleteClick={onDeleteClick}
           />
         </section>
       </main>
@@ -58,4 +42,4 @@ function Movies (props) {
   );
 };
 
-export default Movies;
+export default SavedMovies;

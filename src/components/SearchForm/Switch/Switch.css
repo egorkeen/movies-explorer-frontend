@@ -34,10 +34,19 @@
   border-radius: 50px;
 }
 
-.switch__input:checked + .switch__slider:before {
-  transform: translateX(17px);
+.switch__slider_active {
+  background-color: rgba(61, 220, 132, 1);
+}
+
+.switch__slider_active:before {
+  transform: translateX(16px);
+  background-color: white;
+}
+
+/* .switch__input:checked + .switch__slider:before {
+  transform: translateX(16px);
 }
 
 .switch__input:checked + .switch__slider {
   background-color: rgba(61, 220, 132, 1);
-}
+} */

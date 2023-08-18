@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import Switch from "./Switch/Switch";
 
-function SearchForm (props) {
+function SearchForm ({ onToggleClick, onSubmit, shortsActive }) {
   const [movie, setMovie] = useState('');
+  const location = useLocation();
 
   const handleMovieChange = (e) => {
     setMovie(e.target.value);
@@ -10,8 +12,24 @@ function SearchForm (props) {
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
-    props.onSubmit(movie);
+    if (location.pathname === '/movies') {
+      localStorage.setItem('inputMoviesValue', JSON.stringify(movie));
+    } else if (location.pathname === '/saved-movies') {
+      localStorage.setItem('inputSavedMoviesValue', JSON.stringify(movie));
+    }
+    onSubmit(movie);
   }
+
+  // подставляем в инпут значение из локального хранилища
+  useEffect(() => {
+    if (location.pathname === '/movies') {
+      const inputValue = JSON.parse(localStorage.getItem('inputMoviesValue')) || '';
+      setMovie(inputValue);
+    } else if (location.pathname === '/saved-movies') {
+      const inputValue = JSON.parse(localStorage.getItem('inputSavedMoviesValue')) || '';
+      setMovie(inputValue);
+    }
+  }, []);
 
   return (
     <section className="search-form">
@@ -33,8 +51,8 @@ function SearchForm (props) {
       </form>
       <div className="search-form__toggle-container">
         <Switch
-          toggleShorts={props.toggleShorts}
-          onToggleClick={props.onToggleClick}
+          shortsActive={shortsActive}
+          onToggleClick={onToggleClick}
         />
         <span className="search-form__span">Короткометражка</span>
       </div>

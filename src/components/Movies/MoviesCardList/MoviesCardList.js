@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import MoviesCard from "../MoviesCard/MoviesCard";
 import Preloader from "../../Preloader/Preloader";
-import mainApi from '../../../utils/MainApi';
 
-function MoviesCardList(props) {
+function MoviesCardList({ isLoading, movies, onSaveClick }) {
   const [visibleCards, setVisibleCards] = useState(12); // Количество карточек для отображения
 
   // Функция для загрузки следующих карточек
@@ -22,7 +21,7 @@ function MoviesCardList(props) {
   // Добавим useEffect для обработки события isLoading, чтобы при каждом изменении этого состояния обновлять количество видимых карточек
   useEffect(() => {
     setVisibleCards(12); // Вернем количество карточек к изначальному значению после загрузки новых данных
-  }, [props.isLoading]);
+  }, [isLoading]);
 
   // Добавим слушатель события изменения размера окна
   useEffect(() => {
@@ -44,41 +43,20 @@ function MoviesCardList(props) {
     };
   }, []);
 
-  function handleSaveClick(movie) {
-    mainApi
-      .createMovie(movie)
-      .then((res) => {
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
-
-  function handleDeleteClick(movieId) {
-    mainApi
-      .deleteMovie(movieId)
-      .then((res) => {
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
-
   return (
     <div className="movies__card-list">
-      {props.isLoading ? (
+      {isLoading ? (
         <Preloader />
       ) : (
         // Проверяем, если массив найденных фильмов не пустой, то рендерим
         // то, что было найдено.
-        props.cards.length > 0 ? 
+        movies.length > 0 ? 
         <div className="movies__container">
-          {props.cards.slice(0, visibleCards).map((card) => (
+          {movies.slice(0, visibleCards).map((movie) => (
             <MoviesCard
-              key={card.id}
-              card={card}
-              onSaveClick={handleSaveClick}
-              onDeleteClick={handleDeleteClick}
+              key={movie.id}
+              movie={movie}
+              onSaveClick={onSaveClick}
             />
           ))}
         </div>
@@ -87,7 +65,7 @@ function MoviesCardList(props) {
         <h2 className="movies__no-movies-title">Ничего не найдено</h2>
       )}
       {/* Показываем кнопку "Ещё" только если остались еще карточки для отображения */}
-      {props.cards.length > visibleCards && !props.isLoading && (
+      {movies.length > visibleCards && !isLoading && (
         <button onClick={loadMoreCards} className="movies__load-button">
           Ещё
         </button>

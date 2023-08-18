@@ -1,19 +1,24 @@
-import React, { useState } from "react";
-import mainApi from "../../../utils/MainApi";
+import React from "react";
 
-function MoviesCard (props) {
+function MoviesCard ({ movie, onDeleteClick }) {
 
   function handleDeleteClick() {
-    props.onCardDelete(props.card);
+    onDeleteClick(movie);
   }
 
   return (
     <article className="card">
       <div className="card__data">
-        <h2 className="card__title">{props.card.nameRU}</h2>
-        <p className="card__duration">{props.card.duration} мин</p>
+        <h2 className="card__title">{movie.nameRU}</h2>
+        <p className="card__duration">{movie.duration} мин</p>
       </div>
-      <img className="card__image" alt={props.card.name} src={props.card.image} />
+      <a target="_blank" href={movie.trailerLink} rel="noreferrer">
+        <img 
+          className="card__image" 
+          alt={movie.name} 
+          src={movie.image} 
+        />
+      </a>
       <button className='card__delete-button' onClick={handleDeleteClick} />
     </article>
   );

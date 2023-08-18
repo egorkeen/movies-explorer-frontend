@@ -66,6 +66,13 @@
   background-image: url(../../../images/card__add-button_active.svg);
   background-repeat: no-repeat;
   background-size: cover;
+  width: 100px;
+  height: 30px;
+  border-radius: 30px;
+  border: none;
+  margin: 18px auto 0;
+  padding: 0;
+  transition: .1s linear;
 }
 
 .card__add-button:hover {

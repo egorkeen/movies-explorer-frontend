@@ -17,6 +17,7 @@
   grid-template-columns: repeat(3, 1fr);
   justify-content: center;
   align-items: center;
+  flex-direction: column-reverse;
   gap: 32px;
 }
 

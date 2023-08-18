@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import MoviesCard from "../MoviesCard/MoviesCard";
 import Preloader from "../../Preloader/Preloader";
  
-function MoviesCardList (props) {
-  const [isLoading, setLoading] = useState(false);
+function MoviesCardList ({ isLoading, movies, onDeleteClick }) {
   const [visibleCards, setVisibleCards] = useState(12); // Количество карточек для отображения
 
   // Функция для загрузки следующих карточек
@@ -22,7 +21,7 @@ function loadMoreCards() {
   // Добавим useEffect для обработки события isLoading, чтобы при каждом изменении этого состояния обновлять количество видимых карточек
   useEffect(() => {
     setVisibleCards(12); // Вернем количество карточек к изначальному значению после загрузки новых данных
-  }, [props.isLoading]);
+  }, [isLoading]);
 
   // Добавим слушатель события изменения размера окна
   useEffect(() => {
@@ -46,27 +45,27 @@ function loadMoreCards() {
 
   return (
     <div className="saved-movies__card-list">
-      {props.isLoading ? (
+      {isLoading ? (
         <Preloader />
       ) : (
         // Проверяем, если массив найденных фильмов не пустой, то рендерим
         // то, что было найдено.
-        props.cards.length > 0 ? 
+        movies.length > 0 ? 
         <div className="saved-movies__container">
-          {props.cards.slice(0, visibleCards).map((card) => (
+          {movies.slice(0, visibleCards).map((movie) => (
             <MoviesCard
-              key={card._id}
-              card={card}
-              onCardDelete={props.onCardDelete}
+              key={movie._id}
+              movie={movie}
+              onDeleteClick={onDeleteClick}
             />
           ))}
         </div>
         // Если массив пустой, то рендерим надпись ниже
         :
-        <h2 className="saved-movies__no-movies-title">Здесь пока пусто</h2>
+        <h2 className="saved-movies__no-movies-title">Ничего не найдено</h2>
       )}
       {/* Показываем кнопку "Ещё" только если остались еще карточки для отображения */}
-      {props.cards.length > visibleCards && !props.isLoading && (
+      {movies.length > visibleCards && !isLoading && (
         <button onClick={loadMoreCards} className="saved-movies__load-button">
           Ещё
         </button>
