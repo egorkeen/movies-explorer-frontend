@@ -113,6 +113,7 @@
   }
 
   .card__title {
+    max-width: 200px;
     font-size: 12px;
   }
 
@@ -126,6 +127,10 @@
   }
 
   .card__add-button {
-    margin-top: 14px;
+    margin: auto;
+  }
+
+  .card__add-button_active {
+    margin: auto;
   }
 }

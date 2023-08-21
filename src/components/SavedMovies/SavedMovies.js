@@ -22,22 +22,6 @@ function SavedMovies ({
 
   const isHeaderDark = true;
 
-  // данный useEffect обновляет список фильмов каждый раз, когда пользователь переходит на роут /saved-movies
-  useEffect(() => {
-    setLoadingSavedMovies(true);
-    mainApi
-      .getMovies()
-      .then((movies) => {
-        // сделав запрос, фильтруем фильмы по владельцу
-        const userMovies = movies.filter((movie) => movie.owner === currentUser._id);
-        setSavedMovies(userMovies);
-        setLoadingSavedMovies(false);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-  }, [currentUser]);
-
   return (
     <div className="page">
       <Header

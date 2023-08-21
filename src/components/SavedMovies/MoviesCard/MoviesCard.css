@@ -94,6 +94,7 @@
   }
 
   .card__title {
+    max-width: 200px;
     font-size: 12px;
   }
 
@@ -107,6 +108,6 @@
   }
 
   .card__delete-button {
-    margin-top: 14px;
+    margin: auto;
   }
 }

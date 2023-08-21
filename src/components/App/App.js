@@ -332,6 +332,24 @@ function App() {
     }
   }, [savedMovies]);
 
+    // данный useEffect обновляет список фильмов каждый раз, когда пользователь переходит на роут /saved-movies
+    useEffect(() => {
+      if (location.pathname === '/movies' || '/saved-movies') {
+        setLoadingSavedMovies(true);
+        mainApi
+          .getMovies()
+          .then((movies) => {
+            // сделав запрос, фильтруем фильмы по владельцу
+            const userMovies = movies.filter((movie) => movie.owner === currentUser._id);
+            setSavedMovies(userMovies);
+            setLoadingSavedMovies(false);
+          })
+          .catch((err) => {
+            console.log(err);
+          })
+      }
+    }, [currentUser]);
+
   // приложение
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -404,8 +422,6 @@ function App() {
               shortsActive={savedShortsActive}
               setSavedMovies={setSavedMovies}
               currentUser={currentUser}
-
-
             />
           } 
         />
