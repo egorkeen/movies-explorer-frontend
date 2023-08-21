@@ -73,6 +73,11 @@
   margin: 18px auto 0;
   padding: 0;
   transition: .1s linear;
+  cursor: pointer;
+}
+
+.card__add-button_active:hover {
+  opacity: .8;
 }
 
 .card__add-button:hover {

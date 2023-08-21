@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import SearchForm from "../SearchForm/SearchForm";
@@ -9,13 +9,14 @@ function Movies ({
   loggedIn, 
   movies, 
   onSaveClick,
+  onDeleteClick,
   isLoading,
   onSubmit,
   onToggleClick,
   shortsActive
   }) {
 
-  const [isHeaderDark, setHeaderDark] = useState(true);
+  const isHeaderDark = true;
 
   return (
     <div className="page">
@@ -35,6 +36,7 @@ function Movies ({
             movies={movies}
             isLoading={isLoading}
             onSaveClick={onSaveClick}
+            onDeleteClick={onDeleteClick}
           />
         </section>
       </main>

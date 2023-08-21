@@ -14,8 +14,6 @@ function SearchForm ({ onToggleClick, onSubmit, shortsActive }) {
     e.preventDefault();
     if (location.pathname === '/movies') {
       localStorage.setItem('inputMoviesValue', JSON.stringify(movie));
-    } else if (location.pathname === '/saved-movies') {
-      localStorage.setItem('inputSavedMoviesValue', JSON.stringify(movie));
     }
     onSubmit(movie);
   }
@@ -25,11 +23,8 @@ function SearchForm ({ onToggleClick, onSubmit, shortsActive }) {
     if (location.pathname === '/movies') {
       const inputValue = JSON.parse(localStorage.getItem('inputMoviesValue')) || '';
       setMovie(inputValue);
-    } else if (location.pathname === '/saved-movies') {
-      const inputValue = JSON.parse(localStorage.getItem('inputSavedMoviesValue')) || '';
-      setMovie(inputValue);
     }
-  }, []);
+  }, [location.pathname]);
 
   return (
     <section className="search-form">

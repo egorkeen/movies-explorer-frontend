@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Header from "../Header/Header";
 import Promo from "./Promo/Promo";
 import AboutProject from "./AboutProject/AboutProject";
@@ -8,7 +8,8 @@ import Portfolio from "./Portfolio/Portfolio";
 import Footer from "../Footer/Footer";
 
 function Main (props) {
-  const [isHeaderDark, setHeaderDark] = useState(false);
+  const isHeaderDark = false;
+  
   return (
     <div className="page">
       <Header

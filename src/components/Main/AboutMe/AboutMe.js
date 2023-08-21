@@ -16,7 +16,7 @@ function AboutMe (props) {
             на курсах веб-разработки от Яндекс Практикума. В свободное время я люблю
             слушать музыку, смотреть фильмы, сериалы и аниме, а также петь песни под гитару.
             </p>
-            <a href="https://github.com/egorkeen" className="about-me__link">Github</a>
+            <a target="_blank" href="https://github.com/egorkeen" className="about-me__link" rel="noreferrer">Github</a>
           </div>
           <img src={photo} alt="Фото студента" className="about-me__photo" />
         </div>

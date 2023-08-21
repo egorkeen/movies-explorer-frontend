@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "./MoviesCardList/MoviesCardList";
+
+import mainApi from "../../utils/MainApi";
 
 function SavedMovies ({ 
   onBurgerMenuClick, 
@@ -10,11 +12,31 @@ function SavedMovies ({
   savedMovies, 
   onDeleteClick,
   isLoading,
+  setLoadingSavedMovies,
   onSubmit,
   onToggleClick,
-  shortsActive 
+  shortsActive,
+  setSavedMovies,
+  currentUser
   }) {
-  const [isHeaderDark, setHeaderDark] = useState(true);
+
+  const isHeaderDark = true;
+
+  // данный useEffect обновляет список фильмов каждый раз, когда пользователь переходит на роут /saved-movies
+  useEffect(() => {
+    setLoadingSavedMovies(true);
+    mainApi
+      .getMovies()
+      .then((movies) => {
+        // сделав запрос, фильтруем фильмы по владельцу
+        const userMovies = movies.filter((movie) => movie.owner === currentUser._id);
+        setSavedMovies(userMovies);
+        setLoadingSavedMovies(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }, [currentUser]);
 
   return (
     <div className="page">
