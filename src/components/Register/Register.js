@@ -56,15 +56,36 @@ function Register (props) {
   };
 
   useEffect(() => {
+    if (isNameValid(name)) {
+      setNameError('Минимальная длина имени 2 символа');
+    }
+  }, [name]);
+
+  useEffect(() => {
+    if (!isEmailValid(email)) {
+      setEmailError('Введите корректный email');
+    }
+  }, [email]);
+
+  useEffect(() => {
+    if (!isPasswordValid(password)) {
+      setPasswordError('Минимальная длина пароля 6 символов');
+    }
+  }, [password]);
+
+  useEffect(() => {
     if (isNameValid(name) && isEmailValid(email) && isPasswordValid(password)) {
       setSubmitActive(true);
     } else {
       setSubmitActive(false);
-      setNameError(isNameValid(name) ? '' : 'Введите корректное имя');
-      setEmailError(isEmailValid(email) ? '' : 'Введите корректный email');
-      setPasswordError(isPasswordValid(password) ? '' : 'Минимальная длина пароля 6 символов');
     }
   }, [name, email, password]);
+
+  useEffect(() => {
+    setNameError('');
+    setEmailError('');
+    setPasswordError('');
+  }, []);
 
   return (
     <div className="page">

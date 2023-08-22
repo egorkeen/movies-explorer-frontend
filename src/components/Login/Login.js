@@ -22,15 +22,10 @@ function Login (props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (isEmailValid(email) && isPasswordValid(password)) {
-      props.onSubmit({
-        email: email,
-        password: password
-      })
-    } else {
-      setEmailError(isEmailValid(email) ? '' : 'Введите корректный email');
-      setPasswordError(isPasswordValid(password) ? '' : 'Минимальная длина пароля 6 символов');
-    }
+    props.onSubmit({
+      email: email,
+      password: password
+    });
   };
 
   const isEmailValid = (email) => {
@@ -43,12 +38,22 @@ function Login (props) {
   };
 
   useEffect(() => {
+    if (!isEmailValid(email)) {
+      setEmailError('Введите корректный email');
+    }
+  }, [email]);
+
+  useEffect(() => {
+    if (!isPasswordValid(password)) {
+      setPasswordError('Минимальная длина пароля 6 символов');
+    }
+  }, [password]);
+
+  useEffect(() => {
     if (isEmailValid(email) && isPasswordValid(password)) {
       setSubmitActive(true);
     } else {
       setSubmitActive(false);
-      setEmailError(isEmailValid(email) ? '' : 'Введите корректный email');
-      setPasswordError(isPasswordValid(password) ? '' : 'Минимальная длина пароля 6 символов');
     }
   }, [email, password]);
 
