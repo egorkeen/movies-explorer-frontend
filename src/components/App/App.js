@@ -125,6 +125,7 @@ function App() {
     localStorage.removeItem('searchedMovies');
     localStorage.removeItem('inputMoviesValue');
     localStorage.removeItem('shortsActive');
+    localStorage.removeItem('jwt');
     setCurrentUser({});
     setLoggedIn(false);
     navigate("/signin", { replace: true });
@@ -330,7 +331,7 @@ function App() {
         console.log(err);
       })
     }
-  }, [savedMovies]);
+  }, [currentUser, savedMovies]);
 
     // данный useEffect обновляет список фильмов каждый раз, когда пользователь переходит на роут /saved-movies
     useEffect(() => {

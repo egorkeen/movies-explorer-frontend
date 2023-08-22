@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Form from "../Form/Form";
 import logo from '../../images/logo.svg';
@@ -6,6 +6,11 @@ import logo from '../../images/logo.svg';
 function Login (props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+
+  const [isSubmitActive, setSubmitActive] = useState();
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -17,18 +22,53 @@ function Login (props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.onSubmit({
-      email: email,
-      password: password
-    })
+    if (isEmailValid(email) && isPasswordValid(password)) {
+      props.onSubmit({
+        email: email,
+        password: password
+      })
+    } else {
+      setEmailError(isEmailValid(email) ? '' : 'Введите корректный email');
+      setPasswordError(isPasswordValid(password) ? '' : 'Минимальная длина пароля 6 символов');
+    }
   };
+
+  const isEmailValid = (email) => {
+    const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i;
+    return emailRegex.test(email);
+  };
+
+  const isPasswordValid = (password) => {
+    return password.length >= 6;
+  };
+
+  useEffect(() => {
+    if (isEmailValid(email) && isPasswordValid(password)) {
+      setSubmitActive(true);
+    } else {
+      setSubmitActive(false);
+      setEmailError(isEmailValid(email) ? '' : 'Введите корректный email');
+      setPasswordError(isPasswordValid(password) ? '' : 'Минимальная длина пароля 6 символов');
+    }
+  }, [email, password]);
+
+  useEffect(() => {
+    setEmailError('');
+    setPasswordError('');
+  }, []);
 
   return (
     <div className="page">
       <section className="login">
         <div className="login__container">
           <img className="logo" src={logo} alt="Логотип"/>
-          <Form handleSubmit={handleSubmit} formName='login-form' title='Рады видеть!' buttonText='Войти'>
+          <Form 
+            handleSubmit={handleSubmit} 
+            formName='login-form' 
+            title='Рады видеть!' 
+            buttonText='Войти'
+            isSubmitActive={isSubmitActive}
+          >
             {/* e-mail */}
             <h2 className="form__input-name">E-mail</h2>
             <input
@@ -40,6 +80,7 @@ function Login (props) {
               maxLength={30}
               required 
             />
+            <span className={`form__validation-error ${isEmailValid(email) ? '' : 'form__validation-error_active'}`}>{emailError}</span>
             {/* password */}
             <h2 className="form__input-name">Пароль</h2>
             <input 
@@ -50,6 +91,7 @@ function Login (props) {
               minLength={6}
               required  
             />
+            <span className={`form__validation-error ${isPasswordValid(password) ? '' : 'form__validation-error_active'}`}>{passwordError}</span>
           </Form>
         </div>
        {/* span ниже не в контейнере для расположения по центру */}
