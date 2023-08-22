@@ -87,9 +87,7 @@ function App() {
     mainApi
       .signUp(userData)
       .then(() => {
-        setSuccessText('Вы успешно зарегистрировались!');
-        setSuccessPopupOpen(true);
-        navigate('/signin', { replace: true });
+        handleSignInSubmit(userData);
       })
       .catch((err) => {
         setErrorPopupOpen(true);
@@ -109,7 +107,7 @@ function App() {
           .then((userData) => {
             setCurrentUser(userData);
             setLoggedIn(true);
-            navigate('/', { replace: true });
+            navigate('/movies', { replace: true });
           })    
       })
       .catch((err) => {
@@ -331,11 +329,10 @@ function App() {
         console.log(err);
       })
     }
-  }, [currentUser, savedMovies]);
+  }, []);
 
     // данный useEffect обновляет список фильмов каждый раз, когда пользователь переходит на роут /saved-movies
     useEffect(() => {
-      if (location.pathname === '/movies' || '/saved-movies') {
         setLoadingSavedMovies(true);
         mainApi
           .getMovies()
@@ -348,7 +345,6 @@ function App() {
           .catch((err) => {
             console.log(err);
           })
-      }
     }, [currentUser]);
 
   // приложение
