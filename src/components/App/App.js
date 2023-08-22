@@ -25,7 +25,7 @@ import moviesApi from '../../utils/MoviesApi';
 
 function App() {
 
-  const [currentUser, setCurrentUser] = useState({});
+  const [currentUser, setCurrentUser] = useState();
   // переменные состояния
   const [isLoggedIn, setLoggedIn] = useState(false);
   const [isBurgerMenuOpen, setBurgerMenuOpen] = useState(false);
@@ -288,6 +288,22 @@ function App() {
     tokenCheck();
   }, []);
 
+  useEffect(() => {
+    if (currentUser) {
+      mainApi
+        .getMovies()
+        .then((movies) => {
+          // сделав запрос, фильтруем фильмы по владельцу
+          const userMovies = movies.filter((movie) => movie.owner === currentUser._id);
+          setSavedMovies(userMovies);
+          console.log(savedMovies);
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+    }
+}, [currentUser]);
+
   // этот useEffect вернет все параметры поиска в состояние до этого
   useEffect(() => {
     const shorts = JSON.parse(localStorage.getItem('shortsActive'));
@@ -329,23 +345,7 @@ function App() {
         console.log(err);
       })
     }
-  }, []);
-
-    // данный useEffect обновляет список фильмов каждый раз, когда пользователь переходит на роут /saved-movies
-    useEffect(() => {
-        setLoadingSavedMovies(true);
-        mainApi
-          .getMovies()
-          .then((movies) => {
-            // сделав запрос, фильтруем фильмы по владельцу
-            const userMovies = movies.filter((movie) => movie.owner === currentUser._id);
-            setSavedMovies(userMovies);
-            setLoadingSavedMovies(false);
-          })
-          .catch((err) => {
-            console.log(err);
-          })
-    }, [currentUser]);
+  }, [savedMovies]);
 
   // приложение
   return (
