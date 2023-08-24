@@ -289,20 +289,17 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (currentUser) {
-      mainApi
-        .getMovies()
-        .then((movies) => {
-          // сделав запрос, фильтруем фильмы по владельцу
-          const userMovies = movies.filter((movie) => movie.owner === currentUser._id);
-          setSavedMovies(userMovies);
-          console.log(savedMovies);
-        })
-        .catch((err) => {
-          console.log(err);
-        })
-    }
-}, [currentUser]);
+    mainApi
+      .getMovies()
+      .then((movies) => {
+        // сделав запрос, фильтруем фильмы по владельцу
+        const userMovies = movies.filter((movie) => movie.owner === currentUser._id);
+        setSavedMovies(userMovies);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+}, [currentUser, savedMovies]);
 
   // этот useEffect вернет все параметры поиска в состояние до этого
   useEffect(() => {
@@ -346,6 +343,7 @@ function App() {
       })
     }
   }, [savedMovies]);
+
 
   // приложение
   return (

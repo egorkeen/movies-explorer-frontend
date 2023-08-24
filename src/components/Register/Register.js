@@ -91,7 +91,9 @@ function Register (props) {
     <div className="page">
       <section className="register">
         <div className="register__container">
-        <img className="logo" src={logo} alt="Логотип"/>
+          <Link to="/">
+            <img className="logo" src={logo} alt="Логотип"/>
+          </Link>
         <Form 
           handleSubmit={handleSubmit} 
           formName='register-form' 

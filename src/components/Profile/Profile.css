@@ -68,6 +68,17 @@
   cursor: pointer;
 }
 
+.profile__submit-button_inactive {
+  color: #FFF;
+  font-size: 13px;
+  font-weight: 400;
+  background-color: #202020;
+  border: none;
+  margin: 207px 0 16px;
+  padding: 0;
+  opacity: .6;
+}
+
 .profile__submit-button:hover {
   opacity: .8;
 }

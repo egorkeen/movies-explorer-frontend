@@ -66,7 +66,9 @@ function Login (props) {
     <div className="page">
       <section className="login">
         <div className="login__container">
-          <img className="logo" src={logo} alt="Логотип"/>
+          <Link to="/">
+            <img className="logo" src={logo} alt="Логотип"/>
+          </Link>
           <Form 
             handleSubmit={handleSubmit} 
             formName='login-form' 
