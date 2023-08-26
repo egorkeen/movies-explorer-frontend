@@ -35,7 +35,7 @@
 }
 
 .profile__input {
-  width: 122px;
+  width: 150px;
   text-align: right;
   border: none;
   background-color: #202020;
@@ -57,7 +57,7 @@
   font-weight: 400;
   background-color: #202020;
   border: none;
-  margin: 207px 0 16px;
+  margin: 210px 0 16px;
   padding: 0;
   transition: .1s linear;
   cursor: pointer;
@@ -69,24 +69,23 @@
   font-weight: 400;
   background-color: #202020;
   border: none;
-  margin: 207px 0 16px;
+  margin: 210px 0 16px;
   padding: 0;
   opacity: .6;
 }
 
 .profile__validation-error {
-  min-height: 11px;
+  height: 10px;
   color: red;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 500;
   padding: 0 0 8px;
   margin: 0;
   visibility: hidden;
-  border-bottom: 1px solid #424242;
 }
 
-.profile__validation-error:last-of-type {
-  border-bottom: none;
+.profile__border {
+  border-bottom: 1px solid #424242;
 }
 
 .profile__validation-error_active {
@@ -140,6 +139,10 @@
   }
 
   .profile__submit-button {
+    margin-top: 30vh;
+  }
+
+  .profile__submit-button_inactive {
     margin-top: 30vh;
   }
 }

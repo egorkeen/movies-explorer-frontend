@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Form from "../Form/Form";
 import logo from '../../images/logo.svg';
 
@@ -12,6 +12,9 @@ function Login (props) {
 
   const [isSubmitActive, setSubmitActive] = useState();
 
+  const navigate = useNavigate();
+
+
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
@@ -22,10 +25,15 @@ function Login (props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.onSubmit({
-      email: email,
-      password: password
-    });
+    if (isEmailValid(email) && isPasswordValid(password)) {
+      props.onSubmit({
+        email: email,
+        password: password
+      })
+    } else {
+      setEmailError(isEmailValid(email) ? '' : 'Введите корректный email');
+      setPasswordError(isPasswordValid(password) ? '' : 'Минимальная длина пароля 6 символов');
+    }
   };
 
   const isEmailValid = (email) => {
@@ -61,6 +69,12 @@ function Login (props) {
     setEmailError('');
     setPasswordError('');
   }, []);
+
+  useEffect(() => {
+    if (props.isLoggedIn) {
+      navigate("/movies", { replace: true })
+    }
+  }, [props.isLoggedIn]);
 
   return (
     <div className="page">

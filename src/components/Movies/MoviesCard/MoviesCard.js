@@ -1,16 +1,29 @@
 import React, { useState } from "react";
 
-function MoviesCard ({ movie, onSaveClick, onDeleteClick }) {
+function MoviesCard ({ movie, onSaveClick, onDeleteClick, setErrorPopupOpen, setErrorText }) {
   const [isAdded, setAdded] = useState(movie.isAdded);
 
-  function buttonClick() {
-    if (!isAdded) {
-      onSaveClick(movie);
-      setAdded(true);
-    } else {
-      setAdded(false);
-      onDeleteClick(movie);
+  async function buttonClick() {
+    try {
+      if (!isAdded) {
+        await onSaveClick(movie);
+        setAdded(true);
+      } else {
+        await onDeleteClick(movie);
+        setAdded(false);
+      }
+    } catch (err) {
+      setErrorPopupOpen(true);
+      setErrorText(`Ошибка ${err}`);
+      console.log(err);
     }
+    // if (!isAdded) {
+    //   onSaveClick(movie);
+    //   setAdded(true);
+    // } else {
+    //   setAdded(false);
+    //   onDeleteClick(movie);
+    // }
   }
 
   function formatDuration(duration) {

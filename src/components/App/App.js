@@ -53,7 +53,6 @@ function App() {
         const res = await mainApi.checkToken(jwt);
         if (res) {
           setLoggedIn(true);
-          navigate("/", { replace: true });
           const userData = await mainApi.getUserData();
           setCurrentUser(userData);
         }
@@ -115,7 +114,7 @@ function App() {
     localStorage.removeItem('savedMovies');
     setCurrentUser({});
     setLoggedIn(false);
-    navigate("/signin", { replace: true });
+    navigate("/", { replace: true });
     setSavedMovies([]);
     setMovies([]);
   };
@@ -311,6 +310,7 @@ function App() {
           element={
             <Register
               onSubmit={handleSignUpSubmit}
+              isLoggedIn={isLoggedIn}
             />
           } 
         />
@@ -321,6 +321,7 @@ function App() {
           element={
             <Login
               onSubmit={handleSignInSubmit}
+              isLoggedIn={isLoggedIn}
             />
           } 
         />
@@ -340,6 +341,8 @@ function App() {
               onSubmit={handleSearchSubmit}
               onToggleClick={handleToggleClick}
               shortsActive={shortsActive}
+              setErrorPopupOpen={setErrorPopupOpen}
+              setErrorText={setErrorText}
             />
           } 
         />
@@ -358,6 +361,8 @@ function App() {
               onSubmit={handleSearchSubmit}
               onToggleClick={handleToggleClick}
               shortsActive={savedShortsActive}
+              setErrorPopupOpen={setErrorPopupOpen}
+              setErrorText={setErrorText}
             />
           } 
         />
@@ -373,6 +378,8 @@ function App() {
               loggedIn={isLoggedIn}
               onSignOut={handleSignOutClick}
               onSubmit={handleUpdateUserProfile}
+              setErrorPopupOpen={setErrorPopupOpen}
+              setErrorText={setErrorText}
             />
           }
         />

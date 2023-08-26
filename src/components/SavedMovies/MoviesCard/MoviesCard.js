@@ -1,9 +1,15 @@
 import React from "react";
 
-function MoviesCard ({ movie, onDeleteClick }) {
+function MoviesCard ({ movie, onDeleteClick, setErrorPopupOpen, setErrorText }) {
 
-  function handleDeleteClick() {
-    onDeleteClick(movie);
+  async function handleDeleteClick() {
+    try {
+      await onDeleteClick(movie);
+    } catch (err) {
+      setErrorPopupOpen(true);
+      setErrorText(`Ошибка ${err}`);
+      console.log(err);
+    }
   }
 
   function formatDuration(duration) {

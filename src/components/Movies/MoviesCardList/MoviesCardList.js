@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import MoviesCard from "../MoviesCard/MoviesCard";
 import Preloader from "../../Preloader/Preloader";
 
-function MoviesCardList({ isLoading, movies, onSaveClick, onDeleteClick }) {
+function MoviesCardList({ isLoading, movies, onSaveClick, onDeleteClick, setErrorPopupOpen, setErrorText }) {
   const [visibleCards, setVisibleCards] = useState(12); // Количество карточек для отображения
 
   // Функция для загрузки следующих карточек
@@ -58,6 +58,8 @@ function MoviesCardList({ isLoading, movies, onSaveClick, onDeleteClick }) {
               movie={movie}
               onSaveClick={onSaveClick}
               onDeleteClick={onDeleteClick}
+              setErrorPopupOpen={setErrorPopupOpen}
+              setErrorText={setErrorText}
             />
           ))}
         </div>

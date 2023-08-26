@@ -15,7 +15,9 @@ function SavedMovies ({
   onToggleClick,
   shortsActive,
   setSavedMovies,
-  currentUser
+  currentUser,
+  setErrorPopupOpen,
+  setErrorText
   }) {
 
   const isHeaderDark = true;
@@ -47,6 +49,8 @@ function SavedMovies ({
             isLoading={isLoading}
             movies={savedMovies}
             onDeleteClick={onDeleteClick}
+            setErrorPopupOpen={setErrorPopupOpen}
+            setErrorText={setErrorText}
           />
         </section>
       </main>

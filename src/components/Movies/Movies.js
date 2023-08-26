@@ -16,6 +16,8 @@ function Movies ({
   onSubmit,
   onToggleClick,
   shortsActive,
+  setErrorPopupOpen,
+  setErrorText
   }) {
 
   const isHeaderDark = true;
@@ -39,6 +41,8 @@ function Movies ({
             isLoading={isLoading}
             onSaveClick={onSaveClick}
             onDeleteClick={onDeleteClick}
+            setErrorPopupOpen={setErrorPopupOpen}
+            setErrorText={setErrorText}
           />
         </section>
       </main>

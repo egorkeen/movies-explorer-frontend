@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Form from "../Form/Form";
 import logo from '../../images/logo.svg';
 
@@ -13,6 +13,8 @@ function Register (props) {
   const [passwordError, setPasswordError] = useState('');
 
   const [isSubmitActive, setSubmitActive] = useState();
+
+  const navigate = useNavigate();
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -86,6 +88,12 @@ function Register (props) {
     setEmailError('');
     setPasswordError('');
   }, []);
+
+  useEffect(() => {
+    if (props.isLoggedIn) {
+      navigate("/movies", { replace: true })
+    }
+  }, [props.isLoggedIn]);
 
   return (
     <div className="page">
