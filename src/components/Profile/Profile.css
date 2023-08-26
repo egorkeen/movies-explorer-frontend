@@ -22,13 +22,8 @@
   display: flex;
   justify-content: space-between;
   width: 410px;
-  border-bottom: 1px solid #424242;
-  padding: 16px 0;
+  padding: 16px 0 8px;
   margin: 0;
-}
-
-.profile__container:last-of-type {
-  border-bottom: none;
 }
 
 .profile__data-name {
@@ -77,6 +72,25 @@
   margin: 207px 0 16px;
   padding: 0;
   opacity: .6;
+}
+
+.profile__validation-error {
+  min-height: 11px;
+  color: red;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 0 0 8px;
+  margin: 0;
+  visibility: hidden;
+  border-bottom: 1px solid #424242;
+}
+
+.profile__validation-error:last-of-type {
+  border-bottom: none;
+}
+
+.profile__validation-error_active {
+  visibility: visible;
 }
 
 .profile__submit-button:hover {

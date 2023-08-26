@@ -46,28 +46,23 @@ function App() {
   const location = useLocation();
 
   // проверка токена
-  function tokenCheck() {
-    if (localStorage.getItem('jwt')) {
-      const jwt = localStorage.getItem('jwt');
-      mainApi
-        .checkToken(jwt)
-        .then((res) => {
-          if (res) {
-            setLoggedIn(true);
-            navigate("/", { replace: true });
-            mainApi
-              .getUserData()
-              .then((res) => {
-                setCurrentUser(res);
-              });
-          }
-        })
-        .catch((err) => {
-          setErrorPopupOpen(true);
-          setErrorText(`Ошибка ${err}`);
-          console.log(err);
-        });
-    };
+  async function tokenCheck() {
+    const jwt = localStorage.getItem('jwt');
+    if (jwt) {
+      try {
+        const res = await mainApi.checkToken(jwt);
+        if (res) {
+          setLoggedIn(true);
+          navigate("/", { replace: true });
+          const userData = await mainApi.getUserData();
+          setCurrentUser(userData);
+        }
+      } catch (err) {
+        setErrorPopupOpen(true);
+        setErrorText(`Ошибка ${err}`);
+        console.log(err);
+      }
+    }
   };
 
   // закрыть попапы и бургер-меню
@@ -83,38 +78,31 @@ function App() {
   }; 
 
   // регистрация
-  function handleSignUpSubmit(userData) {
-    mainApi
-      .signUp(userData)
-      .then(() => {
-        handleSignInSubmit(userData);
-      })
-      .catch((err) => {
-        setErrorPopupOpen(true);
-        setErrorText(`Ошибка ${err}`);
-        console.log(err);
-      });
+  async function handleSignUpSubmit(userData) {
+    try {
+      await mainApi.signUp(userData);
+      await handleSignInSubmit(userData);
+    } catch (err) {
+      setErrorPopupOpen(true);
+      setErrorText(`Ошибка ${err}`);
+      console.log(err);
+    };
   };
 
   // авторизация
-  function handleSignInSubmit(userData) {
-    mainApi
-      .signIn(userData)
-      .then((res) => {
-        localStorage.setItem("jwt", res.token);
-        mainApi
-          .getUserData()
-          .then((userData) => {
-            setCurrentUser(userData);
-            setLoggedIn(true);
-            navigate('/movies', { replace: true });
-          })    
-      })
-      .catch((err) => {
-        setErrorPopupOpen(true);
-        setErrorText(`Ошибка ${err}`);
-        console.log(err);
-      });
+  async function handleSignInSubmit (userData) {
+    try {
+      const res = await mainApi.signIn(userData);
+      localStorage.setItem("jwt", res.token);
+      const user = await mainApi.getUserData();
+      setCurrentUser(user);
+      setLoggedIn(true);
+      navigate('/movies', {  replace: true });
+    } catch (err) {
+      setErrorPopupOpen(true);
+      setErrorText(`Ошибка ${err}`);
+      console.log(err);
+    };
   };
 
   // выход из аккаунта
@@ -124,6 +112,7 @@ function App() {
     localStorage.removeItem('inputMoviesValue');
     localStorage.removeItem('shortsActive');
     localStorage.removeItem('jwt');
+    localStorage.removeItem('savedMovies');
     setCurrentUser({});
     setLoggedIn(false);
     navigate("/signin", { replace: true });
@@ -131,69 +120,53 @@ function App() {
     setMovies([]);
   };
 
-  // обновление данных профиля
-  function handleUpdateUserProfile(userData) {
-    mainApi
-      .updateUserProfile(userData)
-      .then((updatedUserData) => {
-        setCurrentUser(updatedUserData);
-        setSuccessText('Вы успешно обновили данные!');
-        setSuccessPopupOpen(true);
-      })
-      .catch((err) => {
-        setErrorPopupOpen(true);
-        setErrorText(`Ошибка ${err}`);
-        console.log(err);
-      });
+  // обновить данные профиля
+  async function handleUpdateUserProfile (userData) {
+    try {
+      const updatedUserData = await mainApi.updateUserProfile(userData);
+      setCurrentUser(updatedUserData);
+      setSuccessText('Вы успешно обновили данные');
+      setSuccessPopupOpen(true);
+    } catch (err) {
+      setErrorPopupOpen(true);
+      setErrorText(`Ошибка ${err}`);
+      console.log(err);
+    };
   };
 
   // функции с фильмами
   // добавить фильм
-  function handleSaveMovie(movie) {
-    mainApi
-      .createMovie(movie)
-      .then((addedMovie) => {
-        setSavedMovies([addedMovie, ...savedMovies]);
-      })
-      .catch((err) => {
-        setErrorPopupOpen(true);
-        setErrorText(`Ошибка ${err}`);
-        console.log(err);
-      });
-  };
+  async function handleSaveMovie (movie) {
+    try {
+      const addedMovie = await mainApi.createMovie(movie);
+      setSavedMovies([addedMovie, ...savedMovies]);
+    } catch (err) {
+      setErrorPopupOpen(true);
+      setErrorText(`Ошибка ${err}`);
+      console.log(err);
+    }
+  }
 
   // удалить фильм из сохраненных
-  function handleDeleteMovie(movie) {
-    if (location.pathname === '/movies') {
-      const selectedMovie = savedMovies.find(m => m.movieId === movie.id);
-      mainApi
-      .deleteMovie(selectedMovie._id)
-      .then((res) => {
-        // обновляем список сохраненных фильмов
+  async function handleDeleteMovie (movie) {
+    try {
+      if (location.pathname === '/movies') {
+        const selectedMovie = savedMovies.find(m => m.movieId === movie.id);
+        await mainApi.deleteMovie(selectedMovie._id);
         const updatedMovies = savedMovies.slice().filter(m => m !== selectedMovie);
         setSavedMovies(updatedMovies);
-      })
-      .catch((err) => {
-        setErrorPopupOpen(true);
-        setErrorText(`Ошибка ${err}`);
-        console.log(err);
-      })
-    } else if (location.pathname === '/saved-movies') {
-        mainApi
-          .deleteMovie(movie._id)
-          .then((res) => {
-            // обновляем список сохраненных фильмов
-            const updatedMovies = savedMovies.slice().filter(m => m !== movie);
-            setSavedMovies(updatedMovies);
-          })
-          .catch((err) => {
-            setErrorPopupOpen(true);
-            setErrorText(`Ошибка ${err}`);
-            console.log(err);
-          })
-    };
-  };
-  
+      } else if (location.pathname === '/saved-movies') {
+        await mainApi.deleteMovie(movie._id);
+        const updatedMovies = savedMovies.slice().filter(m => m !== movie);
+        setSavedMovies(updatedMovies);
+      }
+    } catch (err) {
+      setErrorPopupOpen(true);
+      setErrorText(`Ошибка ${err}`);
+      console.log(err);
+    }
+  }
+
   // нажатие на кнопку короткометражки
   const handleToggleClick = () => {
     if (location.pathname === '/movies') {
@@ -204,7 +177,8 @@ function App() {
       localStorage.setItem('shortsActive', JSON.stringify(state));
       const searchedMovies = JSON.parse(localStorage.getItem('searchedMovies'));
       const filteredMovies = filterByShorts(searchedMovies, state);
-      setMovies(filteredMovies);
+      const sortedMovies = sortMovies(filteredMovies, savedMovies);
+      setMovies(sortedMovies);
       setLoadingMovies(false);
     } else if (location.pathname === '/saved-movies') {
       setSavedShortsActive(!savedShortsActive);
@@ -215,72 +189,49 @@ function App() {
   function filterByShorts(movies, state) {
     return state ? movies.filter((movie) => movie.duration <= 40) : movies;
   }
+
+  // сортировка добавленных фильмов
+  function sortMovies (movies, savedMovies) {
+    const sortedMovies = movies.map((movie) => {
+      movie.isAdded = savedMovies.some(
+        (savedMovie) => savedMovie.movieId === movie.id
+      );
+      return movie;
+    });
+
+    return sortedMovies;
+  };
   
   // Submit кнопки поиска фильмов
-  function handleSearchSubmit(keyword) {
-    if (location.pathname === '/movies') {
-      setLoadingMovies(true);
-      moviesApi
-      .getMovies()
-      .then((movies) => {
-        const key = new RegExp(keyword, "gi");
-        // Ищем фильмы
+  async function handleSearchSubmit (keyword) {
+    try {
+      const key = new RegExp(keyword, "gi");
+      if (location.pathname === '/movies') {
+        setLoadingMovies(true);
+        const movies = await moviesApi.getMovies();
         const findedMovies = movies.filter(
           (item) => key.test(item.nameRU) || key.test(item.nameEN)
         );
-        // добавляем фильмам атрибут isAdded для отображения добавленных фильмов
-        const checkedMovies = findedMovies.map((movie) => {
-          movie.isAdded = savedMovies.some((savedMovie) => savedMovie.movieId === movie.id);
-          return movie;
-        });
-        // сохраняем результат в локальном хранилище
+        const checkedMovies = sortMovies(findedMovies, savedMovies);
         localStorage.setItem('searchedMovies', JSON.stringify(checkedMovies));
-        // Если фильмов нет, то мы передаем пустой массив.
-        // Это необходимо, чтобы в MoviesCardList отобразилась
-        // надпись "Ничего не найдено"
-        if (checkedMovies.length === 0) {
-          setLoadingMovies(false);
-          setMovies([]);
-        } else {
-          setLoadingMovies(false);
-          setMovies(filterByShorts(checkedMovies, shortsActive));
-        }
-      })
-      .catch((err) => {
-        setErrorPopupOpen(true);
-        setErrorText(`Ошибка ${err}`);
-        console.log(err);
-      });
-    } else if (location.pathname === '/saved-movies') {
-      setLoadingSavedMovies(true);
-        mainApi
-          .getMovies()
-          .then((movies) => {
-            const key = new RegExp(keyword, "gi");
-            // ищем фильмы
-            const findedMovies = movies.filter(
-              (item) => key.test(item.nameRU) || key.test(item.nameEN)
-            );
-            // отбираем фильмы пользователя
-            const userMovies = findedMovies.filter((movie) => movie.owner === currentUser._id);
-            // Если фильмов нет, то мы передаем пустой массив.
-            // Это необходимо, чтобы в MoviesCardList отобразилась
-            // надпись "Ничего не найдено"
-            if (userMovies.length === 0) {
-              setLoadingSavedMovies(false);
-              setSavedMovies([]);
-            } else {
-              setLoadingSavedMovies(false);
-              setSavedMovies(filterByShorts(userMovies, savedShortsActive));
-            }
-          })
-          .catch((err) => {
-            setErrorPopupOpen(true);
-            setErrorText(`Ошибка ${err}`);
-            console.log(err);
-          });
+        setMovies(filterByShorts(checkedMovies, shortsActive) || []);
+        setLoadingMovies(false);
+      } else if (location.pathname === '/saved-movies') {
+        setLoadingSavedMovies(true);
+        const movies = await mainApi.getMovies();
+        const findedMovies = movies.filter(
+          (item) => key.test(item.nameRU) || key.test(item.nameEN)
+        );
+        const userMovies = findedMovies.filter((movie) => movie.owner === currentUser._id);
+        setSavedMovies(filterByShorts(userMovies, savedShortsActive) || []);
+        setLoadingSavedMovies(false);
+      }
+    } catch (err) {
+      setErrorPopupOpen(true);
+      setErrorText(`Ошибка ${err}`);
+      console.log(err);
     }
-  };
+  }
 
   // useEffect'ы
   // проверка токена
@@ -289,61 +240,54 @@ function App() {
   }, []);
 
   useEffect(() => {
-    mainApi
-      .getMovies()
-      .then((movies) => {
-        // сделав запрос, фильтруем фильмы по владельцу
-        const userMovies = movies.filter((movie) => movie.owner === currentUser._id);
-        setSavedMovies(userMovies);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-}, [currentUser, savedMovies]);
+    if (isLoggedIn === true) {
+      setLoadingMovies(true);
+      mainApi
+        .getMovies()
+        .then((savedMovies) => {
+          const userMovies = savedMovies.filter((savedMovie) => savedMovie.owner === currentUser._id);
+          setSavedMovies(userMovies);
 
-  // этот useEffect вернет все параметры поиска в состояние до этого
+          if (localStorage.getItem('searchedMovies')) {
+            const state = JSON.parse(localStorage.getItem('shortsActive'));
+            setShortsActive((state) || false);
+            // ищем фильмы, которые искали ранее
+            const searchedMovies = JSON.parse(localStorage.getItem('searchedMovies'));
+            // сортируем добавленные и нет
+            const sortedMovies = sortMovies(searchedMovies, userMovies);
+            // фильтруем короткометражки
+            const filteredMovies = filterByShorts(sortedMovies, state);
+            setMovies(filteredMovies);
+            setLoadingMovies(false);
+          } else {
+            moviesApi
+              .getMovies()
+              .then((movies) => {
+                const sortedMovies = sortMovies(movies, userMovies);
+                localStorage.setItem('searchedMovies', JSON.stringify(sortedMovies));
+                const filteredMovies = filterByShorts(sortedMovies, shortsActive);
+                setMovies(filteredMovies);
+                setLoadingMovies(false);
+              })
+              .catch((err) => {
+                setErrorPopupOpen(true);
+                setErrorText(`Ошибка ${err}`);
+                console.log(err);
+              });
+          }
+        })
+        .catch((err) => {
+          setErrorPopupOpen(true);
+          setErrorText(`Ошибка ${err}`);
+          console.log(err);
+        })
+    }
+  }, [currentUser]);
+
   useEffect(() => {
-    const shorts = JSON.parse(localStorage.getItem('shortsActive'));
-    if (shorts) {
-      setShortsActive(shorts);
-    }
-    // рендеринг предыдущих фильмов, если они есть в локальном хранилище
-    if (JSON.parse(localStorage.getItem('searchedMovies'))) {
-      const searchedMovies = JSON.parse(localStorage.getItem('searchedMovies'));
-      // это необходимо для корректного отображения сохраненных фильмов
-        // не только на страничке "сохраненные фильмы", но и на "обычных фильмах"
-        const filteredMovies = filterByShorts(searchedMovies, shortsActive).map((movie) => {
-          movie.isAdded = savedMovies.some(
-            (savedMovie) => savedMovie.movieId === movie.id
-          );
-          return movie;
-        });
-      setMovies(filteredMovies);
-    } else {
-      // если фильмов в ЛХ нет, рендерим все фильмы
-      moviesApi
-      .getMovies()
-      .then((movies) => {
-        // это необходимо для корректного отображения сохраненных фильмов
-        // не только на страничке "сохраненные фильмы", но и на "обычных фильмах"
-        const sortedMovies = movies.map((movie) => {
-          movie.isAdded = savedMovies.some(
-            (savedMovie) => savedMovie.movieId === movie.id
-          );
-          return movie;
-        });
-        localStorage.setItem('searchedMovies', JSON.stringify(sortedMovies));
-        const filteredMovies = filterByShorts(sortedMovies, shortsActive);
-        setMovies(filteredMovies);
-      })
-      .catch((err) => {
-        setErrorPopupOpen(true);
-        setErrorText(`Ошибка ${err}`);
-        console.log(err);
-      })
-    }
+    const sortedMovies = sortMovies(movies, savedMovies);
+    setMovies(sortedMovies);
   }, [savedMovies]);
-
 
   // приложение
   return (
@@ -411,12 +355,9 @@ function App() {
               savedMovies={savedMovies}
               onDeleteClick={handleDeleteMovie}
               isLoading={isLoadingSavedMovies}
-              setLoadingSavedMovies={setLoadingSavedMovies}
               onSubmit={handleSearchSubmit}
               onToggleClick={handleToggleClick}
               shortsActive={savedShortsActive}
-              setSavedMovies={setSavedMovies}
-              currentUser={currentUser}
             />
           } 
         />

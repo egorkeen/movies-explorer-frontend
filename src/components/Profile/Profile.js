@@ -75,16 +75,16 @@ function Profile (props) {
         <div className="profile__data">
           <div className="profile__container">
             <h2 className="profile__data-name">Имя</h2>
-            <input className="profile__input" type="text" onChange={handleNameChange} value={name} />
-            <span className={`profile__validation-error ${isNameValid(name) ? '' : 'profile__validation-error_active'}`}>{nameError}</span>
+            <input className="profile__input" type="text" onChange={handleNameChange} value={name} minLength={2} maxLength={30} required noValidate />
           </div>
+          <span className={`profile__validation-error ${isNameValid(name) ? '' : 'profile__validation-error_active'}`}>{nameError}</span>
           <div className="profile__container">
             <h2 className="profile__data-name">E-mail</h2>
-            <input className="profile__input" type="email" onChange={handleEmailChange} value={email} />
-            <span className={`profile__validation-error ${isEmailValid(email) ? '' : 'profile__validation-error_active'}`}>{emailError}</span>
+            <input className="profile__input" type="email" onChange={handleEmailChange} value={email} minLength={6} required noValidate />
           </div>
+          <span className={`profile__validation-error ${isEmailValid(email) ? '' : 'profile__validation-error_active'}`}>{emailError}</span>
         </div>
-        <button onClick={handleSubmitChanges} type="submit" className={`profile__submit-button ${isSubmitActive ? '' : 'profile__submit-button_inactive'}`}>Редактировать</button>
+        <button onClick={handleSubmitChanges} type="submit" className={`${isSubmitActive ? 'profile__submit-button' : 'profile__submit-button_inactive'}`}>Редактировать</button>
         <button className="profile__sign-out-button" onClick={props.onSignOut}>Выйти из аккаунта</button>
       </section>
     </div>

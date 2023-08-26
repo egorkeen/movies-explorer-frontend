@@ -4,8 +4,6 @@ import Footer from "../Footer/Footer";
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "./MoviesCardList/MoviesCardList";
 
-import mainApi from "../../utils/MainApi";
-
 function SavedMovies ({ 
   onBurgerMenuClick, 
   loggedIn, 
@@ -23,18 +21,12 @@ function SavedMovies ({
   const isHeaderDark = true;
 
   useEffect(() => {
-    setLoadingSavedMovies(true);
-    mainApi
-      .getMovies()
-      .then((movies) => {
-        // сделав запрос, фильтруем фильмы по владельцу
-        const userMovies = movies.filter((movie) => movie.owner === currentUser._id);
-        setSavedMovies(userMovies);
-        setLoadingSavedMovies(false);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
+    if (currentUser) {
+      setLoadingSavedMovies(true);
+      const userMovies = JSON.parse(localStorage.getItem('savedMovies'));
+      setSavedMovies(userMovies);
+      setLoadingSavedMovies(false);
+    }
 }, []);
 
   return (
