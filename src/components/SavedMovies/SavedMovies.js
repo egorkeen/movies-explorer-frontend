@@ -15,7 +15,6 @@ function SavedMovies ({
   onToggleClick,
   shortsActive,
   setSavedMovies,
-  currentUser,
   setErrorPopupOpen,
   setErrorText
   }) {
@@ -23,12 +22,10 @@ function SavedMovies ({
   const isHeaderDark = true;
 
   useEffect(() => {
-    if (currentUser) {
       setLoadingSavedMovies(true);
       const userMovies = JSON.parse(localStorage.getItem('savedMovies'));
       setSavedMovies(userMovies);
       setLoadingSavedMovies(false);
-    }
 }, []);
 
   return (

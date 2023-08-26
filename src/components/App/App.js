@@ -138,6 +138,8 @@ function App() {
   async function handleSaveMovie (movie) {
     try {
       const addedMovie = await mainApi.createMovie(movie);
+      const updatedMovies = [addedMovie, ...savedMovies];
+      localStorage.setItem('savedMovies', JSON.stringify(updatedMovies));
       setSavedMovies([addedMovie, ...savedMovies]);
     } catch (err) {
       setErrorPopupOpen(true);
@@ -153,10 +155,12 @@ function App() {
         const selectedMovie = savedMovies.find(m => m.movieId === movie.id);
         await mainApi.deleteMovie(selectedMovie._id);
         const updatedMovies = savedMovies.slice().filter(m => m !== selectedMovie);
+        localStorage.setItem('savedMovies', JSON.stringify(updatedMovies));
         setSavedMovies(updatedMovies);
       } else if (location.pathname === '/saved-movies') {
         await mainApi.deleteMovie(movie._id);
         const updatedMovies = savedMovies.slice().filter(m => m !== movie);
+        localStorage.setItem('savedMovies', JSON.stringify(updatedMovies));
         setSavedMovies(updatedMovies);
       }
     } catch (err) {
@@ -180,7 +184,11 @@ function App() {
       setMovies(sortedMovies);
       setLoadingMovies(false);
     } else if (location.pathname === '/saved-movies') {
-      setSavedShortsActive(!savedShortsActive);
+      const state = !savedShortsActive;
+      setSavedShortsActive(state);
+      const userMovies = JSON.parse(localStorage.getItem('savedMovies'));
+      const filteredMovies = filterByShorts(userMovies, state);
+      setSavedMovies(filteredMovies);
     }
   };
 
@@ -217,12 +225,11 @@ function App() {
         setLoadingMovies(false);
       } else if (location.pathname === '/saved-movies') {
         setLoadingSavedMovies(true);
-        const movies = await mainApi.getMovies();
-        const findedMovies = movies.filter(
+        const userMovies = JSON.parse(localStorage.getItem('savedMovies'));
+        const findedMovies = userMovies.filter(
           (item) => key.test(item.nameRU) || key.test(item.nameEN)
         );
-        const userMovies = findedMovies.filter((movie) => movie.owner === currentUser._id);
-        setSavedMovies(filterByShorts(userMovies, savedShortsActive) || []);
+        setSavedMovies(filterByShorts(findedMovies, savedShortsActive) || []);
         setLoadingSavedMovies(false);
       }
     } catch (err) {
@@ -245,6 +252,7 @@ function App() {
         .getMovies()
         .then((savedMovies) => {
           const userMovies = savedMovies.filter((savedMovie) => savedMovie.owner === currentUser._id);
+          localStorage.setItem('savedMovies', JSON.stringify(userMovies));
           setSavedMovies(userMovies);
 
           if (localStorage.getItem('searchedMovies')) {
@@ -363,6 +371,8 @@ function App() {
               shortsActive={savedShortsActive}
               setErrorPopupOpen={setErrorPopupOpen}
               setErrorText={setErrorText}
+              setLoadingSavedMovies={setLoadingSavedMovies}
+              setSavedMovies={setSavedMovies}
             />
           } 
         />
