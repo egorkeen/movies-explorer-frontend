@@ -1,0 +1,139 @@
+.navigation-popup {
+  display: none;
+  justify-content: center;
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 100vh;
+  width: 520px;
+  background-color: rgba(32, 32, 32, 1);
+  z-index: 80;
+}
+
+.navigation-popup_active {
+  display: flex;
+}
+
+.navigation-popup__background {
+  display: none;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  background-color: rgba(32, 32, 32, .7);
+}
+
+.navigation-popup__background_active {
+  display: block;
+}
+
+.navigation-popup__close-button {
+  display: block;
+  width: 44px;
+  height: 44px;
+  background-image: url(../../images/navigation-popup__close-button.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: fixed;
+  top: 22px;
+  right: 22px;
+  transition: .1s linear;
+}
+
+.navigation-popup__close-button:hover {
+  opacity: .8;
+}
+
+.navigation-popup__container {
+  gap: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.navigation-popup__button {
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  color: #FFF;
+  font-size: 18px;
+  font-weight: 500;
+  transition: .1s linear;
+}
+
+.navigation-popup__button:hover {
+  opacity: .8;
+}
+
+.navigation-popup__button_active {
+  padding-bottom: 4px;
+  text-decoration: none;
+  color: #FFF;
+  font-size: 18px;
+  font-weight: 500;
+  transition: .1s linear;
+  cursor: default;
+  border-bottom: 2px solid #fff;
+}
+
+.navigation-popup__button_active:hover {
+  opacity: 1;
+}
+
+.navigation-popup__profile-button {
+  min-width: 100px;
+  min-height: 32px;
+  margin: calc(200px + 25vh) 0 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 7px;
+  border: 2px solid rgba(170, 170, 170, .2);
+  border-radius: 50px;
+  text-decoration: none;
+  transition: .1s linear;
+}
+
+.navigation-popup__profile-button:hover {
+  opacity: .8;
+}
+
+.navigation-popup__profile-image {
+  width: 12px;
+  height: 14px;
+  margin: 0;
+  padding: 0;
+}
+
+.navigation-popup__profile-text {
+  margin: 0;
+  padding: 0;
+  color: #FFF;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16px;
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .navigation-popup {
+    width: 100vw;
+    height: 100vh;
+    left: 0px;
+    top: 0px;
+  }
+
+  .navigation-popup__close-button {
+    right: 13px;
+    top: 13px;
+  }
+
+  .navigation-popup__container {
+    gap: 24px;
+  }
+
+  .navigation-popup__profile-button {
+    margin-top: 200px;
+  }
+}

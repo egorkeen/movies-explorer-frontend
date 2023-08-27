@@ -1,0 +1,120 @@
+.search-form {
+  width: 1140px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 73px 70px 0;
+}
+
+.search-form__search-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.search-form__input {
+  color: white;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+  width: 94%;
+  height: 50px;
+  border: none;
+  background-color: #2F2F2F;
+  border-radius: 8px;
+  padding: 0 0 0 20px;
+  margin: 0;
+}
+
+.search-form__search-button {
+  border: none;
+  background-color: #202020;
+  width: 44px;
+  height: 44px;
+  background-image: url(../../images/search-form__search-button.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  transition: .1s linear;
+}
+
+.search-form__search-button:hover {
+  opacity: .8;
+}
+
+.search-form__toggle-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 29px 0 0;
+  padding: 0 0 40px;
+  gap: 12px;
+  border-bottom: 1px solid #424242;
+}
+
+.search-form__span {
+  margin: 0;
+  height: 0;
+  color: #FFF;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1280px) {
+  .search-form {
+    width: 708px;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  .search-form__input {
+    width: 93%;
+  }
+
+  .search-form__toggle-container {
+    margin-top: 42px;
+    padding-bottom: 38px;
+  }
+}
+
+/* эти стили нужны для более плавной адаптации инпута под смартфоны */
+@media screen and (min-width: 500px) and (max-width: 767px) {
+  .search-form__input {
+    width: 90%;
+    padding-left: 13px;
+    height: 44px;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 499px) {
+  .search-form__input {
+    width: 80%;
+    padding-left: 13px;
+    height: 44px;
+  }
+}
+/* конец адаптивных стилей инпута */
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .search-form {
+    width: 292px;
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .search-form__span {
+    font-size: 11px;
+  }
+
+  .search-form__toggle-container {
+    margin-top: 48px;
+    padding-bottom: 38px;
+  }
+}
