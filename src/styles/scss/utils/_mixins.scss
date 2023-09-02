@@ -102,7 +102,35 @@
   color: #fff;
 }
 
-@mixin loginText {
+@mixin authStyles {
+  @include centeredPosition;
+  flex-direction: column;
+  min-width: 100vw;
+  height: 100vh;
+  color: $color_2;
+}
+
+@mixin authStylesMobile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@mixin authSpan {
+  color: $color_6;
   font-size: 14px;
   font-weight: 400;
+  margin: 16px 0 0;
+  padding: 0;
+}
+
+@mixin authLink {
+  text-decoration: none;
+  color: #4285F4;
+  font-size: 14px;
+  font-weight: 400;
+  transition: .1s linear;
+  &:hover {
+    opacity: $opacityDefault;
+  }
 }

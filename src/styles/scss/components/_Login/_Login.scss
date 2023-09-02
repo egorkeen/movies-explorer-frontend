@@ -2,38 +2,23 @@
 @import '../../utils/mixins';
 
 .login {
-  min-width: 100vw;
-  height: 100vh;
-  background-color: $color_2;
-  @include centeredPosition;
-  flex-direction: column;
+  @include authStyles;
 
   .login__container {
     margin: 0;
   }
 
   .login__span {
-    color: $color_6;
-    @include loginText;
-    margin: 16px 0 0;
-    padding: 0;
+    @include authSpan;
 
     .login__link {
-      text-decoration: none;
-      color: $color_7;
-      @include loginText;
-      transition: .1s linear;
-      &:hover {
-        opacity: $opacityDefault;
-      }
+      @include authLink;
     }
   }
 }
 
 @media screen and (min-width: $minWidthMobile) and (max-width: $maxWidthMobile) {
   .login__container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    @include authStylesMobile;
   }
 }

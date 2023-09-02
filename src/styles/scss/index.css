@@ -1657,13 +1657,13 @@ body {
   }
 }
 .login {
-  min-width: 100vw;
-  height: 100vh;
-  background-color: #202020;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  min-width: 100vw;
+  height: 100vh;
+  color: #202020;
 }
 .login .login__container {
   margin: 0;
@@ -1688,6 +1688,45 @@ body {
 
 @media screen and (min-width: 320px) and (max-width: 767px) {
   .login__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+.register {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-width: 100vw;
+  height: 100vh;
+  color: #202020;
+}
+
+.register__container {
+  margin: 0;
+}
+
+.register__span {
+  color: #8B8B8B;
+  font-size: 14px;
+  font-weight: 400;
+  margin: 16px 0 0;
+  padding: 0;
+}
+.register__span .register__link {
+  text-decoration: none;
+  color: #4285F4;
+  font-size: 14px;
+  font-weight: 400;
+  transition: 0.1s linear;
+}
+.register__span .register__link:hover {
+  opacity: 0.8;
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .register__container {
     display: flex;
     flex-direction: column;
     align-items: center;

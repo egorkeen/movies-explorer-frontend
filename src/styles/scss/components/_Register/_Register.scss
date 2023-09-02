@@ -1,0 +1,25 @@
+@import '../../utils/variables';
+@import '../../utils/mixins';
+
+.register {
+  @include authStyles;
+}
+
+.register__container {
+  margin: 0;
+}
+
+.register__span {
+  @include authSpan;
+
+  .register__link {
+    @include authLink;
+  }
+}
+
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .register__container {
+    @include authStylesMobile;
+  }
+}
