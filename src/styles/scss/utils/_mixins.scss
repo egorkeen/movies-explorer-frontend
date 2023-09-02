@@ -1,0 +1,108 @@
+@import './variables';
+
+// общие миксины
+@mixin spaceBetweenPosition {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin centeredPosition {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// миксины navigation
+@mixin navigationButton {
+  text-decoration: none;
+  margin: 0 20px 0 0;
+  padding: 0;
+  color: #FFF;
+  font-size: 14px;
+  line-height: 18px;
+  transition: .1s linear;
+}
+
+@mixin navigationAuthButton {
+  width: 77px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  transition: .1s linear;
+  &:hover {
+    opacity: $opacityDefault;
+  }
+}
+
+// миксины AboutProject
+
+@mixin aboutProjectText {
+  width: 100%;
+  height: 36px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: normal;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+// заголовок для нескольких блоков main
+@mixin mainTitle {
+  letter-spacing: -0.8px;
+  display: flex;
+  color: #FFF;
+  font-size: 22px;
+  font-weight: 400;
+  margin: 0;
+  border-bottom: 1px solid rgba(218, 218, 218, 1);
+  letter-spacing: -0.8px;
+}
+
+@mixin mainBigTitle {
+  padding: 0;
+  color: #FFF;
+  font-size: 50px;
+  font-weight: 400;
+  line-height: 58px;
+}
+
+@mixin mainParagraph {
+  padding: 0;
+  color: #FFF;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+}
+
+@mixin mainParagraphLaptop {
+  font-size: 12px;
+  line-height: 18px;
+}
+
+@mixin mainParagraphMobile{
+  font-size: 11px;
+  line-height: 16px;
+}
+
+@mixin footerText {
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+  font-size: 13px;
+  font-weight: 400;
+  color: #fff;
+}
+
+@mixin loginText {
+  font-size: 14px;
+  font-weight: 400;
+}

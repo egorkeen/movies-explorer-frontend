@@ -1,0 +1,42 @@
+// перменные ширины экрана для десктопа, планшета и смартфона
+
+$fonts: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+sans-serif;
+
+// общая ширина для блоков
+$width: 1140px;
+$widthLaptop: 708px;
+$widthMobile: 292px;
+
+// общие паддинги для блоков
+$paddings: 21px 70px;
+$paddingsLaptop: 21px 30px;
+$paddingsMobile: 18px 14px;
+
+// параметры минимальной и максимальной ширины для адаптивности под смартфон и планшет
+$minWidthLaptop: 768px;
+$maxWidthLaptop: 1280px;
+
+$minWidthMobile: 320px;
+$maxWidthMobile: 767px;
+
+// logo
+$logoSize: 38px;
+
+// navigation
+$navigationWidth: 184px;
+
+// colors
+$color_1: #3DDC84;
+$color_2: #202020;
+$color_3: #073042;
+$color_4: #303030;
+$color_5: #272727;
+$color_6: #8B8B8B;
+$color_7: #4285F4;
+$color_8: #2F2F2F;
+
+// opacity
+$opacityDefault: .8;
+$opacityNone: 1;

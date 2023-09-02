@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import promo__image from '../../../images/promo__image.png';
 
 function Promo (props) {

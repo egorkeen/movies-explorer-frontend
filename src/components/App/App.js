@@ -1,5 +1,5 @@
 // styles
-import './App.css';
+import '../../styles/scss/index.css';
 // react
 import { useEffect, useState } from 'react';
 import { Route, Routes, useNavigate, useLocation } from "react-router-dom";

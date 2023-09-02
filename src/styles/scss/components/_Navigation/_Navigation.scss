@@ -1,0 +1,113 @@
+@import '../../utils/variables';
+@import '../../utils/mixins';
+
+
+.navigation__container {
+  @include spaceBetweenPosition;
+  width: $navigationWidth;
+
+  .navigation__button {
+    @include navigationButton;
+    font-weight: 400;
+    &:hover {
+      opacity: $opacityDefault;
+    }
+  }
+  
+  .navigation__button_active {
+    @include navigationButton;
+    font-weight: 500;
+    cursor: default;
+    &:hover {
+      opacity: $opacityNone;
+    }
+  }
+
+  .navigation__profile-button {
+    width: 96px;
+    height: 28px;
+    margin: 0 0 0 30px;
+    padding: 0;
+    @include centeredPosition;
+    gap: 7px;
+    border: 2px solid rgba(170, 170, 170, .2);
+    border-radius: 50px;
+    text-decoration: none;
+    transition: .1s linear;
+    &:hover { 
+      opacity: $opacityDefault;
+    }
+  
+    .navigation__profile-image {
+      width: 12px;
+      height: 14px;
+      margin: 0;
+      padding: 0;
+    }
+  
+    .navigation__profile-text {
+      color: #FFF;
+      font-style: 14px;
+      font-weight: 500;
+      line-height: 16px;
+      margin: 0;
+      padding: 0;
+    }
+  }
+}
+
+.navigation__auth-container {
+  @include spaceBetweenPosition;
+  width: $navigationWidth;
+
+  .navigation__register-button {
+    @include navigationAuthButton;
+    color: #fff;
+  }
+
+  .navigation__login-button {
+    @include navigationAuthButton;
+    height: 32px;
+    color: #000;
+    background-color: $color_1;
+    border-radius: 3px;
+  }
+}
+
+.navigation__burger-menu {
+  display: none;
+  width: 44px;
+  height: 44px;
+  background-image: url(/src/images/navigation__burger-menu.svg);
+  background-repeat: no-repeat;
+  transition: .1s linear;
+  &:hover {
+    opacity: $opacityDefault;
+  }
+}
+
+@media screen and (min-width: $minWidthMobile) and (max-width: $maxWidthMobile) {
+
+  .navigation__container {
+    display: none;
+  }
+
+  .navigation__auth-container {
+    width: 132px;
+
+    .navigation__register-button {
+      width: 64px;
+      font-size: 10px;
+    }
+  
+    .navigation__login-button {
+      width: 54px;
+      height: 26px;
+    }
+  }
+
+  .navigation__burger-menu {
+    display: block;
+    background-size: 42px 37px;
+  }
+}

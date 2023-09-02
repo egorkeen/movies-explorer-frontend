@@ -1,0 +1,151 @@
+@import '../../../utils/variables';
+@import '../../../utils/mixins';
+.techs {
+  max-width: 100%;
+  background-color: $color_5;
+  margin: 0;
+  padding: 98px 70px 100px;
+
+  .techs__content {
+    margin: 0 auto;
+    max-width: $width;
+
+    .techs__title {
+      @include mainTitle;
+      padding: 4px 0 23px;
+    }
+    
+    .techs__container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      .techs__description-title {
+        letter-spacing: -2px;
+        margin: 90px auto 25px;
+        padding: 0;
+        color: #FFF;
+        font-size: 50px;
+        font-weight: 400;
+        line-height: 58px;
+      }
+      
+      .techs__description {
+        max-width: 460px;
+        margin: 0 auto 81px;
+        padding: 0;
+        text-align: center;
+        color: #FFF;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 20px;
+        letter-spacing: -0.5px;
+      }
+      
+      .techs__skills {
+        @include centeredPosition;
+        gap: 10px;
+
+        .techs__skill {
+          @include centeredPosition;
+          margin: 20px 0 0;
+          padding: 0;
+          width: 90px;
+          height: 60px;
+          background-color: $color_4;
+          border-radius: 10px;
+          color: #FFF;
+          font-size: 14px;
+          font-weight: 400;
+          letter-spacing: -0.5px;
+        }
+      }
+    }
+  }
+}
+
+// адаптация планшет
+@media screen and (min-width: $minWidthLaptop) and (max-width: $minWidthLaptop) {
+  .techs {
+    min-width: 668px;
+    padding: 90px 50px;
+
+    .techs__content {
+
+      .techs__title {
+        width: 720px;
+        padding-top: 0;
+      }
+
+      .techs__container {
+
+        .techs__description-title {
+          margin: 81px auto 23px;
+          font-size: 50px;
+        }
+      
+        .techs__description {
+          max-width: 460px;
+          @include mainParagraphLaptop;
+          letter-spacing: -0.5px;
+          margin-bottom: 63px;
+        }
+
+        .techs__skills {
+
+          .techs__skill {
+            width: 84px;
+            height: 57px;
+            font-size: 12px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: $minWidthMobile) and (max-width: $maxWidthMobile) {
+  .techs {
+    min-width: 284px;
+    padding: 70px 18px;
+
+    .techs__content {
+
+      .techs__title {
+        font-size: 18px;
+        padding-top: 0;
+        padding-bottom: 28px;
+      }
+
+      .techs__container {
+
+        .techs__description-title {
+          font-size: 31px;
+          line-height: normal;
+          margin: 57px auto 24px;
+        }
+      
+        .techs__description {
+          @include mainParagraphLaptop;
+          margin-bottom: 50px;
+          letter-spacing: -0.5px;
+        }
+
+        .techs__skills {
+          margin: 0 auto;
+          max-width: 178px;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          grid-template-rows: repeat(auto-fill, 1fr);
+
+          .techs__skill {
+            width: 84px;
+            height: 57px;
+            margin: 0;
+            font-size: 12px;
+          }
+        }
+      }
+    }
+  }
+}

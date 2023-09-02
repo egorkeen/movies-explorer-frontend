@@ -1,0 +1,53 @@
+@import url(./utils/Inter/_stylesheet.css);
+@import url(./utils/_normalize.css);
+@import './utils/variables';
+@import './utils/mixins';
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue';
+}
+
+.page {
+  width: 100%;
+  height: 100vh;
+  background-color: #202020;
+}
+
+// шапка и панель навигации
+@import './components/_Header/Header';
+@import './components/_Navigation/Navigation';
+@import './components/_NavigationPopup/NavigationPopup';
+
+// главная страница
+@import './components/_Main/Main';
+@import './components/_Main/_Techs/Techs';
+@import './components/_Main/_Promo/Promo';
+@import './components/_Main/_AboutMe/AboutMe';
+@import './components/_Main/_Portfolio/Portfolio';
+@import './components/_Main/_AboutProject/AboutProject';
+
+// формы регистрации и авторизации
+@import './components/_Form/Form';
+@import './components/_Login/Login';
+@import './components/_Register/Register';
+
+// фильмы, сохраненные фильмы и поисковик
+@import './components/_Movies/Movies';
+@import './components/_SavedMovies/SavedMovies';
+@import './components/_MoviesCardList/MoviesCardList';
+@import './components/_MoviesCard/MoviesCard';
+@import './components/_SearchForm/SearchForm';
+@import './components/_Preloader/Preloader';
+
+// профиль
+@import './components/_Profile/Profile';
+
+// 404
+@import './components/_NotFound/NotFound';
+
+// попап статуса запроса
+@import './components/_InfoTooltip/InfoTooltip';
+
+// подвал
+@import './components/_Footer/Footer';

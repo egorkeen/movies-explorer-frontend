@@ -1,0 +1,52 @@
+@import '../../utils/variables';
+@import '../../utils/mixins';
+
+.header {
+  padding: $paddings;
+
+  .header__content {
+    max-width: $width;
+    margin: 0 auto;
+    @include spaceBetweenPosition;
+
+    .header__logo {
+      width: $logoSize;
+      height: $logoSize;
+    }
+
+    .header__burger-menu {
+      display: none;
+    }
+  }
+}
+
+// адаптив под планшеты
+@media screen and (min-width: $minWidthLaptop) and (max-width: $maxWidthLaptop) {
+  .header {
+    padding: $paddingsLaptop;
+
+    .header__content {
+      max-width: $widthLaptop;
+    }
+  }
+}
+
+// адаптив под смартфоны
+@media screen and (min-width: $minWidthMobile) and (max-width: $maxWidthMobile) {
+  .header {
+    padding: $paddingsMobile;
+
+    .header__content {
+      max-width: $widthMobile;
+    }
+  }
+}
+
+// модификаторы
+.header_theme_dark {
+  background-color: $color_2;
+}
+
+.header_theme_blue {
+  background-color: $color_3;
+}

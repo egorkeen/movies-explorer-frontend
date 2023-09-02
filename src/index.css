@@ -2,7 +2,6 @@
 
 @import url(./vendor/normalize.css);
 
-@import url(./components/App/App.css);
 @import url(./components/Header/Header.css);
 @import url(./components/Footer/Footer.css);
 @import url(./components/Form/Form.css);

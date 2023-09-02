@@ -1,0 +1,196 @@
+@import '../../../utils/variables';
+@import '../../../utils/mixins';
+
+.about-project {
+  max-width: 100%;
+  background-color: $color_2;
+  margin: 0;
+  padding: 114px 70px 110px;
+
+  .about-project__content {
+    max-width: 1140px;
+    margin: 0 auto;
+
+    .about-project__title {
+      @include mainTitle;
+      padding: 0 0 23px;
+    }
+
+    .about-project__columns-container {
+      margin: 70px 0 0;
+      display: flex;
+      justify-content: space-between;
+      gap: 40px;
+
+      .about-project__two-columns {
+        width: 550px;
+        display: flex;
+        gap: 26px;
+        flex-direction: column;
+
+        .about-project__column-title {
+          letter-spacing: -0.8px;
+          margin: 0;
+          padding: 0;
+          color: #FFF;
+          font-size: 20px;
+          font-weight: 400;
+          line-height: 24px;
+        }
+        
+        .about-project__column-paragraph {
+          margin: 0;
+          padding: 0;
+          color: #FFF;
+          font-size: 14px;
+          font-weight: 400;
+          line-height: 20px;
+        }
+      }
+    }
+
+    .about-project__weeks-container {
+      min-width: 1140px;
+      display: flex;
+      margin: 110px 0 0;
+      padding: 0;
+
+      .about-project__green-container {
+        width: 20%;
+        display: flex;
+        flex-direction: column;
+
+        .about-project__green-title {
+          @include aboutProjectText;
+          @include centeredPosition;
+          background-color: $color_1;
+          color: #000;
+        }
+      }
+      
+      .about-project__gray-container {
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+
+        .about-project__gray-title {
+          @include aboutProjectText;
+          @include centeredPosition;
+          background-color: $color_4;
+          color: #FFF;
+        }
+      }
+
+      .about-project__span {
+        width: 100%;
+        color: #8B8B8B;
+        text-align: center;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 17px;
+        margin: 14px 0 0;
+        padding: 0;
+      }
+    }
+  }
+}
+
+// адаптация под планшеты
+@media screen and (min-width: $minWidthLaptop) and (max-width: $maxWidthLaptop) {
+  .about-project {
+    min-width: 668px;
+    padding: 90px 50px;
+
+    .about-project__content {
+      .about-project__columns-container {
+        gap: 30px;
+  
+        .about-project__two-columns {
+          gap: 21px;
+  
+          .about-project__title {
+            padding-top: 2px;
+          }
+        
+          .about-project__column-paragraph {
+            min-height: 54px;
+            font-size: 12px;
+            line-height: 19px;
+          }
+        }
+      }
+    
+      .about-project__weeks-container {
+        min-width: 668px;
+        margin-top: 91px;
+  
+        .about-project__span {
+          margin-top: 15px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: $minWidthMobile) and (max-width: $maxWidthMobile) {
+  .about-project {
+    min-width: 284px;
+    padding: 70px 18px;
+
+    .about-project__content {
+
+      .about-project__title {
+        margin-top: 2px;
+        font-size: 18px;
+        padding-bottom: 28px;
+      }
+
+      .about-project__columns-container {
+        min-width: 284px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: unset;
+        margin-top: 60px;
+        gap: 56px;
+
+        .about-project__two-columns {
+          max-width: 284px;
+          gap: 12px;
+
+          .about-project__column-title {
+            font-size: 18px;
+          }
+        
+          .about-project__column-paragraph {
+            font-size: 11px;
+            line-height: 16px;
+          }
+        }
+      }
+
+      .about-project__weeks-container {
+        min-width: 284px;
+        margin-top: 60px;
+
+        .about-project__green-container {
+          min-width: 100px;
+
+          .about-project__green-title {
+            font-size: 11px;
+          }
+        }
+
+        .about-project__gray-container {
+          .about-project__gray-title {
+            font-size: 11px;
+          }
+        }
+
+        .about-project__span {
+          font-size: 11px;
+          margin-top: 7px;
+        }
+      }
+    }
+  }
+}

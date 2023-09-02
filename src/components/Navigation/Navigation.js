@@ -27,8 +27,8 @@ function Navigation (props) {
     return (
       <>
         <nav className="navigation__auth-container">
-          <NavLink to="/signup" className="header__register-button">Регистрация</NavLink>
-          <NavLink to="/signin" className="header__login-button">Войти</NavLink>
+          <NavLink to="/signup" className="navigation__register-button">Регистрация</NavLink>
+          <NavLink to="/signin" className="navigation__login-button">Войти</NavLink>
         </nav>
       </>
     );
