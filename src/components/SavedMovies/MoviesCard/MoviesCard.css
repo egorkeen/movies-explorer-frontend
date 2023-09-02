@@ -47,18 +47,7 @@
 }
 
 .card__delete-button {
-  width: 100px;
-  height: 30px;
-  border-radius: 30px;
-  border: none;
-  background-color: #313131;
-  background-image: url(../../../images/card__delete-button.svg);
-  background-repeat: no-repeat;
-  background-size: contain;
-  margin: 18px auto 0;
-  padding: 0;
-  transition: .1s linear;
-  cursor: pointer;
+
 }
 
 .card__delete-button:hover {
