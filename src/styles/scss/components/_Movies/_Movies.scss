@@ -1,0 +1,50 @@
+@import '../../utils/variables';
+@import '../../utils/mixins';
+
+.movies__card-list {
+  @include moviesCardList;
+}
+
+.movies__container {
+  @include moviesContainer;
+}
+
+.movies__preloader {
+  @include moviesPreloader;
+}
+
+.movies__load-button {
+  @include moviesLoadButton;
+}
+
+.movies__no-movies-title {
+  @include noMoviesTitle;
+}
+
+@media screen and (min-width: $minWidthLaptop) and (max-width: $maxWidthLaptop) {
+  .movies__card-list {
+    @include moviesCardListLaptop;
+  }
+
+  .movies__container {
+    @include moviesContainerLaptop;
+  }
+
+  .movies__load-button {
+    @include moviesLoadButtonLaptop;
+  }
+}
+
+@media screen and (min-width: $minWidthMobile) and (max-width: $maxWidthMobile) {
+  .movies__card-list {
+    @include moviesCardListMobile;
+  }
+
+  .movies__container {
+    @include moviesContainerMobile;
+  }
+
+  .movies__load-button {
+    @include moviesLoadButtonMobile;
+  }
+}
