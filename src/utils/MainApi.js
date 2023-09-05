@@ -133,6 +133,6 @@ class MainApi {
   };
 }
 
-const mainApi = new MainApi('https://api.egorkeen.movies.nomoredomains.rocks');
+const mainApi = new MainApi('http://localhost:3000');
 
 export default mainApi;
